@@ -2,4 +2,4 @@
 title: info
 ---
 
-I am a front-end web developer. I used to be a web designer also, but now I concentrate on the code.
+终身学习者。目前从事 Android 开发。未来想成为一名独立开发者。

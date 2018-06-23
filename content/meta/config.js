@@ -13,7 +13,7 @@ module.exports = {
   authorTwitterAccount: "",
   // info
   infoTitle: "Maxiee",
-  infoTitleNote: "记录点滴技术心得",
+  infoTitleNote: "点滴技术心得",
   // manifest.json
   manifestName: "Maxiee 笔记",
   manifestShortName: "Maxiee 笔记", // max 12 characters
