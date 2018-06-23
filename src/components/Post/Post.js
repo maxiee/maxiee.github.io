@@ -24,6 +24,9 @@ const Post = props => {
       <AdSense.Google
         client='ca-pub-8746515866560942'
         slot='3546488844'
+        style={{ display: 'block' }}
+        layout='in-article'
+        format='fluid'
       />
       <Content html={html} />
       <PostFooter author={author} post={post} slug={slug} facebook={facebook} />
