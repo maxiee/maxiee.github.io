@@ -59,7 +59,15 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
             wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
-        })(document);`
+        })(document);
+
+        (function(d) {
+            var wfAD = d.createElement('script'), sAD = d.scripts[0];
+            wfAD.src = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+            wfAD.async = true;
+            sAD.parentNode.insertBefore(wfAD, sAD);
+        })(document);
+        `
       }}
     />
   ]);
