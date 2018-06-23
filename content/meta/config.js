@@ -25,7 +25,6 @@ module.exports = {
   contactEmail: "maxieewong@gmail.com",
   // social
   authorSocialLinks: [
-    { name: "github", url: "https://github.com/maxiee" },
-    { name: "weibo", url: "https://weibo.com/maxiee" }
+    { name: "github", url: "https://github.com/maxiee" },  
   ]
 };
