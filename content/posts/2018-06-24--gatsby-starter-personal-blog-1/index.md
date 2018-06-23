@@ -45,3 +45,30 @@ const autoprefixer = require('autoprefixer');
 参考 [issue](https://github.com/gatsbyjs/gatsby-starter-blog/issues/30#issuecomment-372113311)。
 
 对这些错误目前都是知其然不知其所以然的懵逼状态。
+
+## gatsby-plugin-google-analytics
+
+这个是 Google 统计的插件，文档在[这里](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-google-analytics)。
+
+遇到了一个问题：跟踪没有生效，原因是浏览器有缓存，缓存住了老的代码，新页面代码没有生效。
+
+## react-adsense
+
+项目主页位于[这里](http://git.hust.cc/react-adsense/)。
+
+遇到一点小问题：需要在网页中加入：
+
+```html
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+```
+
+由于主页的模板是使用 JSX，导入方法为，在 gatsby-ssr.js 中添加：
+
+```js
+(function(d) {
+    var wfAD = d.createElement('script'), sAD = d.scripts[0];
+    wfAD.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+    wfAD.async = true;
+    sAD.parentNode.insertBefore(wfAD, sAD);
+})(document);
+```
