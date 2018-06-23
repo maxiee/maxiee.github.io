@@ -11,6 +11,16 @@ if (process.env.NODE_ENV === `production`) {
 }
 
 module.exports = class HTML extends React.Component {
+
+  componentDidMount () {
+    const script = document.createElement("script");
+
+    script.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+  }
+
   render() {
     let css;
     if (process.env.NODE_ENV === `production`) {
