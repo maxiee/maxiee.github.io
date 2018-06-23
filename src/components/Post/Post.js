@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import AdSense from 'react-adsense';
 
 import Article from "../Main/Article";
 import PostHeader from "./PostHeader";
@@ -20,6 +21,10 @@ const Post = props => {
   return (
     <Article>
       <PostHeader title={title} subTitle={subTitle} date={date} />
+      <AdSense.Google
+        client='ca-pub-8746515866560942'
+        slot='3546488844'
+      />
       <Content html={html} />
       <PostFooter author={author} post={post} slug={slug} facebook={facebook} />
     </Article>

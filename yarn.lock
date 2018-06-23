@@ -8855,6 +8855,10 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-adsense@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/react-adsense/-/react-adsense-0.0.5.tgz#875582f706042c163f03aee99fe955a084762418"
+
 react-custom-scrollbars@^4.2.1:
   version "4.2.1"
   resolved "https://registry.npmjs.org/react-custom-scrollbars/-/react-custom-scrollbars-4.2.1.tgz#830fd9502927e97e8a78c2086813899b2a8b66db"

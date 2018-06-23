@@ -67,6 +67,7 @@
     "hoek": "^5.0.3",
     "instantsearch.css": "^7.1.0",
     "prismjs": "^1.14.0",
+    "react-adsense": "^0.0.5",
     "react-custom-scrollbars": "^4.2.1",
     "react-facebook": "^5.0.3",
     "react-headroom": "^2.2.2",
