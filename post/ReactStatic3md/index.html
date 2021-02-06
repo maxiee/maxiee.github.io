@@ -1,0 +1,469 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="React Static"/><title data-react-helmet="true">react-static 静态网站搭建（三）：React 静态博客 Step by Step | Maxiee Blog</title><meta data-react-helmet="true" charSet="UTF-8"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/styles.8980412b.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"/><link rel="preload" as="script" href="https://maxiee.github.io/main.ecbb90a8.js"/><link rel="preload" as="style" href="https://maxiee.github.io/styles.8980412b.css"/><link rel="stylesheet" href="https://maxiee.github.io/styles.8980412b.css"/><script data-react-helmet="true" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"/></head><body><div id="root"><div style="outline:none" tabindex="-1" role="group"><div><div style="display:flex;flex-direction:row;justify-content:space-between;margin-left:26px;margin-right:26px;height:72px"><div style="display:flex;flex-direction:row;justify-content:center;align-items:center"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAC0ALQDASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAABAADBQYHAggB/8QAPxAAAgEDAgQDBQYDBwMFAAAAAQIDAAQRBSEGEjFBBxNRIjJhcYEUI0KRobEIFcEkM1Ji0eHwFnKSJVOCorL/xAAbAQADAQEBAQEAAAAAAAAAAAABAgMABAUGB//EACwRAAICAQMEAgEDBAMAAAAAAAABAhEDEiExBCJBUQUTYTJScQYUM6EjkcH/2gAMAwEAAhEDEQA/ANluHlieMQxcwY7n0ou0k84sOUgrtuKchKSDKMCKKjQDoMVKjXtVHxEz1p1l5IywGSB0piW7ht5VjkPtN0o9Cp2yPlWuwU1TaBrefn5A6FWbtRyrXwIAc4FfIrhGlKDqK3HJq1bxRXtUdo9ZkV+hVSvyxRVpevERhjiiOI9PNxAl3BvLB7wHde/5VEQyLJECDvXNNuMjrxJTgWu3lS7i8xcBhswpwRqpyxCr3NV7Sro292Of3G2NSnEknl2kSqcB2zn6VWOS42RnhcZpeyTgEEi+xg10bWI9qqFtqLW7qS+3fejbjVPKj815+ZyPZUdF+JrLMq3D9LuiU1G9isvYQh5T+H0qv3E0ly5aZiaDWQyzeY7cxbfNFqhYbVCc3M7MeKOLfyMOFHahjKYpY3i98MMYqTj06e5GYwOXPVjijbPQ0hlWWd+dhuFHQVo45SHydRCKafIc0Suu6jftQcjw2jRxBcc3TAot7mFJxCzgOegrp40c+0ASK6+eDy1tyB+xKh5SGHShbmxhnjMciAoe2KklgSJcIMDrQwnheVolcFx1Gd6H8mV8oji8Eb+QCAyjp8KHmsoXVgFGH97HepC4s4pSxZRzMMEjrQ00kNsUjdwpOygnrQ/kP8EZDaQWcYhjHKq9BSo+SKN2ycUqFAbvdj+mWKWUXJGSRnO9SKDpQbyTLcKqR5j7mjbVxKueUjG29Oq4A7fczk2UUkwlZQXHQmnEs1FyJuY5xjGdqJVa4MjiXHJlAOtZpBUpcJj4FfEgRSSoAJ6muomDqCAR86dAoiW0fLaMRAjOQfWqxq+lvp8jTQZNqzZwPwE9vlVtWNtsdPjQWq3kVuvlYWRm2IPSp5IqS3LYpyjK0U7zMkEdqLvL6a7tI4fLZvLPvAZovTtOguLksw5U64zVlZII4gqqgRR0x/SoQxSfLO7J1ONVUbZRYtI1G8YCODlB/G5wKlhwlKYwDeKGx05MjP51Otdoo2ZUXPc9PiaYOqKScuAM4AxTrFBcnPLqMje2xCRaJcWlyi3DoYv/AHB0FT0UMcYP2KSJwRujHr9e1dLqEMsWDjHcGoq5RFk54W5R23plGMeCcpyyfqDJWjSHynV7Nife6r+dGxgeUhVw4x7wOQajLbU+QCO6XzIztnv/AL0XHYIcTaXceUD1Tqh+nani/ROSl5G5dPhe7+0sMyjYH0ri0s2t5pnaVnDnIBPSpUxOFBYDON8HNC3cjRQl1QuR2Hempcg1SfafCM1DDR44rma5TPnSjBbPSpWKcSNyFSr4yRXTCg0pGUpQ2REafbTW1vyXEplfJ9o0HqWlQ3tzFNMMmLdRnvUnJcqJHV1IVe9feXIyO9Ck1Q2qSeryVW+0a+muXeG/kiQ9FHalVnKZpUv1oZZ5Lb/xDsJVxlSD8qdkkSCIu2wFC6ZZJZxeWhJ3zuc0a8SzJySDK1TwR7VL8Hy0u4rmLnQ4X40WmD0xig3skeHygOVe2NqMt4xHGqA5wKyvyGWnmI6q5OAK7klitlBlYA0Le3qWiY/Fjc+lVi51EzyM7+0c7c3+lLKaiNDG5FqmvsxM0SE46fGqpcNLNcFmbv3Ncm8vJUKx/dr0yxxtTSI345QD3C71CWSzohBQ5JEGWGAHzVA6Y/FQZ1GSNgGYmuTbSN7swb4d6CnjlUkOAD64pXJjqKYe12HfAPbvvimPNwOpP0oFJPZBOAQeUmicd05Sh3GfShbZnGglZSScMcjff/Wno7kkKG3yNjmhVChjuAcd+ldKy7Z3+uM0VIV0gzmBGCd6fsLqS1lBDEqe2aEiYE5wMn/LXXLuCh5T6HpTKQlp7FoXUl5QxwR3xTizRXP92d8Zx61VhOUwjbE9NutPQ3LwyK6HcVVZBHjJ9wqgtjG1R9vqEFw0iqcGM4bNHxyLdRBoxnmG4HY0M+n2hjeFpETm94L1p234EilumcsqSDIwwoe7lFvbPJgkKM4FSEGmrBbKkD8yqNs96GkjBBR1+YNatgbWRtjqAurZZfKZM9mGDSo4wqNlwB6UqFMLpvZDU8LySIUcqF3IHeibYTZbzNx2xSnnhs4+eUhn68gNQepcZpZkCR1iHZQuTWckmNhwZc/ZBWWdQR1Br4/3XPOzHCrnFVrSeOtPuyEmlUE9OcYqW1O9t7nSJWt5FOQMYOc1nND5Ojz4JackWiu314ZpHZySOpoeKLl+8lyW/CM1yoDOO+N66kchSxNcknfJWT0LShPMV3ZtsdKpvFHiHomgkpdXqCXqI1PM35DeqL4lcb6jqWspwtwjzT38zcjsmPZ9RnoPUnsKI4V8FdKtokueK7iXUr5xzPEkhSND6ZHtMfjkfKso7XIi5b0h2Lxz0X7SFK3Spv8AeNHkD6ZzV+4a4/0vXhy2d5BcAbFM+0Pp1qEvPDDgi5gEbaHFEANnhlkVvz5t/rWX8ZeFd/wy763wReXM8dr7bwH+/iHqpGzj1GM49aZKEtovcXXJco9GSRLKS9qNjvyj9RTCiVfZaRsE7jlxiss8I/En/qCA2d+VTUYEBI6CVe7D+op7xS8TJ+H5bTTdFt47rVLr8JyeQHZdh1JJ2FKoO9JT7drL3xJxXpHD0CnWNQhtyRlEdvaPrhRuazTUfHjRoZnSztLy4RccrYChvzORXHDPhE2oyDWfEW8nvtQm9s2aSYCD0dh+y4A9a0G04X4ZsohFb8P6SqAY9q1Rzt6kgk0z0R53J3J8Fa4Y8a9A1GeKG5aSylc4++X2fzzitVtb6G7ijmgkV1cZVlIIIrPeIPDThHiG2lU6ZDp90VIS5sl8oqfXlHst9RWdaZe654P8RQ6drUz3nDd0fublQeUD4DsR3X6iskpLtNbXJ6TyHQpKAy/rS3RgrdD7p9aj9Pvor21imt3DxSKGVgdiDUkDmAgjpvvWTKxe9AWo8Srodoys3LztgN6bVV9L4kubqGa8SUtytshONvXPyqJ8WVZ9EmYN7SMHBHw61S+FNVMuiXKcpMgkABLYAJGAf0p8Ml9lS4o+u+M+Nw5cGtq5Nm76NxIZlT75lB65/wCfOrHFMl5EZAw5x1B64rI+EpVurQhz7aE9+tW20u5LedGJIVa0cji6Z871/RfTllBeC1mSPPvL+dKq/LoIu5WuFuZgsp5gFbYD0pVTVL0cP14v3/6IPU9S+zW7TTMWc9AT1rOtTv5LiZ3dtzR/FupM8wj6gDbeqm0hkY9D/rQi1CN+WfofwXxyw4Vka3Y3c3bRSYJOKuXh/qtzfNKsjnyLdQi79Sf9v3rPNX3XI2Iq9+G8Qj0Zexdi7Z7nNckpXKmdHzen+13RoMLnlOdz61TfF3ic8N8J3E8ZxcS/dRZGcsf9sn6VaossR2ANYr/EE73uu8NaWz8sNxN7WfXKrn/7Gmh3OmfnGfZtlo8D+Ek0bh9dcvk59Z1NTI0j+9HE24X67MfmB2oPxW8UYeF746VpkK3epKAZSxwkWRkA43Jx+9avaRqqLHGAFVcKB0GBXj7RtR05ePr684uj82NppTIHTzAJObuvcdR0qsVrbbOZ7bI0ng3xrW7vYrPiK1jtopCFW5hJwp/zA9vjW1xMVIKsCD3BrxdxPPp91xDfz6NCYNOeUtBGRjlX5ZOK9ecCmabgzQXu+b7Q9lCXLDBJ5RS5sailKIYSb2Zh/i7o03A/G9pxDoyrFbXjGQIuyrIPfXHoQc/U1J+Amlvr3EGqcVar/aZYG8uEyHmIkbckZ9BgD51bf4kbeJ/Dy3lKgyR3ycpx0yrA0N/DIhPBmpEheX7cd+/92tUtvHfkWu6jVJCI4ZJZZBHFGpd3Y4AAGST8K86cW+NGqT6lLHw7HDb2UZKpJJGHeQf4jnYfKt547tJbrgbX7e2P38llKF/8TXmTwp410/g+fUv5npzXaXcarzIqlgBn2SG25Tnf5d6TDjTVtWNOT4NF8LPFqXVtWg0jiGOJJ7g8kNzEOUM3ZWXpv6itS454bt+KuF73S7pcuVMkD945QPZYfsfgTXkXRGnveMbJ9OiMc818rwxx/hJfIA+Ve3ZUIII3rZYqDTiaLtUzJP4c9cnu9Du9KvHJm0+TlAZssFPbHoDkVtwb7o59K89+EjKnjFxlHbqRbmWU46jPmn/et+BJhOfShPaRTH4KH4kNnR5kIB5hWXcGS4tL6LIXZTn5E1pviA3Np7/LpWVcKXIj/mcQTd8AN/hwc1ODrImfoHwj/wCFR9s0Tg678u+dSSAwyPnV5kJbBUnI652rKdCnaLV7codycHFaaLlo0UuAUOB06HNNN9x5n9RYdHUKS8ouWhTM2nJnsSKVQul6kkdqBk7kmlXRGWx8dKL1Mx7XHJuJPnURD7UuOu1HaxJzXc/IeYcx60BF7LZJqc3wfsXR7YF/AFrACqdz61f+CnA0qFcY9kVnmoyeYGXBJq/8F4TSYcn8Irm5lseX85/gReYcFV677isW/iMtZ7W+4f1pVJhtpirD/NkMP/ya2qIr5Sn0qD8QdAXirhK90/IWV0zG2Ojg5B/MfrT45aZWz85zLVZM6Hfw6jptpfWzc0NxGsiHPYjNZD4l+DEms6zPqvDM9vA9w3mTW05KrznqykA9euKD8F+Mzoc0nCPE39kmt3IgeY8oBzkoSfzB75+VbtGVdQQQQfSq28b2OfaSMG4L8C5oL6K74ourd4YiGFrbktzkEbMxA29QK3PHKRheVV2GO1E+yP8ASqnx3xrpXCWmvPeSq9yV+6tlPtyH+g+NJJyyMKSiZz/EtrcT6dpOhW7lrqSX7TJGu/sgFVz8yTj5UJ/Djrf8s1HVeGNSU29zK3nRJICDzqMMuPXGD9DUd4aaHqXH/HcnFWuROLKJ/MTsrOPcRfgux+nzqyeM3BF5aXq8Y8NF49QtyGnWLqQBgOB642I7irWkvrFpvuNsUY7Z9fjWTcY+B+j65qEl9pF62lSSsWkhEXPFn1UZHLv8cVIeG3itpPEdnDb6pNHY6soCukjcqSH1Un9v3rRjdwAg+ah79aknLGxtpFA8OfCPSeEL8alLcvqWpICIpXQIkQIxlVyd+u5NW7jDXbfhnh691S8ZQkMZKqT77/hUfM4pvXeMtB0G2ebUtSt4iqluTnBdsdgo3JrGQ2r+NvFEYWOWy4SspM4bbzD8fVj+g/VlcnqkbjZE5/Djo832DVOIb0fe6lKeQnPQEkn6kn8q2sn7vYdqF03T4dMs4bS1jWOCJQioowAB0xRcqgRHlO+NqSUrdlYKqKTx5HzafISQNu1Ytw9zDVLpR03/AKVuPHyH+XS7A+z0rFeHVA86eQe27EfIZ6ftSV3H3PwTuKosmiMDqdumM4bYnvWiXk7R6eMhTgjGRVI4VtxLfpK4bkVSd+memP3q5aoAYo4lJB6g9jQk7Zzf1DmjLOo+kS/DkZuNMV1G2SNvpSqzcL2htNFgR0HMfaO3rSrqjBUrPip5XqdGCa3GYL6TI2c83061Hhgqk83atE13QHceXOuCvuyDoflVOuuG7zzMIAV9c1BzaVM/RvivmMOTEoZJU0QPLzRsT3q98HFjpVsV7DFV6PQL1ysPl4B25vWtJ4Z4cew06JJXwQNwKml6F+e+Q6eWFRjJN/gIifMXtDOevzo2zlUZDKeU9xRUNvDGMcvMfjvRSsq9Aqj0oKDuz4OU0zLfEnwx03i6UXkUr22oKmBNGuQ+OnMO/wC9ZtFonihwiPs2k3E11aBsIEZZBj/tfcD5V6eDrXaFNsrn6VeM2tiLimeaHfxi1ZOQQz26ONyBFGR/UUTw14Kapf3xveM7mSZicmJJSzP/ANznf6D869IKyg9B+VfXkXtj1ovI/GwFFeSF0rTBp1lFZ2Fp5NvEAqqMAADtUj9mldCskalfnT4nAO3avqXGdsjHWpj2ZJxf4G6TrtzLdaef5XdSNzM0Z5kJ7nk6D6YprSvACyhXF9xFqswIwyxOI1I9O9bEZTgZP5V8aQ4ODv0qim0qEcUZbF/D9wmkokllv5yDkiSfY/kK0jStDttI0+Ox04Jb28a8qJGgAAovzu+enrTgkwBnr6UHLVyFbcA4spQNrnP/AHLmvjWcw5SHRgDnBGKKEnMTg/SlzYO+aTSh1NorvEOmz3lo6tGpyDsD1rLrPhmSO8kieN05WOdvjtW33Djk3oXTZUi1GMMqlJDysCPyoOGprc9Dp/k8vTRegpGm6b9mCrGmB/zerLw5ogu7r7Rc7Qx9E/xH41c2tIFOUjVSe4FM2lpDZK4hXHMcmrw6fS99ziz9bLNbfI+5IOAu1KuS9Kug4AKxso4bQQSASr35xmm5eH9Ol38nkP8AlJFcT3ssV3HFHEWU7s3pRlveLKkjKrDkz1rNRezGua775Kxqmn2VnfrHaqxZBlmJzvRXPiP6VAXF3JJeSy9WZidz8aPS5LxgZwcVxNq9jpttK2OxyEOTXYlx3FAFiCdxmvqSdi2PhS2aiQEgbGcGnBIC2NvoKASXJySR/Wu1k3yoO/esagppCNz0+PSqL4jeI1lwZ5MU8ck11OpdI0229TmrerlSvMc5/wCd6h+JeEtD4lMTa1Yx3RiUqjkkMoPUAgg0Y1e4HfgznSPHTTbudIr2yntC5AEhwyj54rW0vuZOcAgEdMH/AJmqnpfhtwpps6S22i2pdSHV53aTcdMBiatAUAkEgAjqd6M9N9po35My428aINC1O402ys2urqD2HcvyoHxuPXai/DPxbXirUW0++sGtrndkaIl0I+J7fWrhf8KaDqMjzXmi6bcyv1kkgUsfrj50Vp2hafpsTxadaWllDI3O6W8QQO3xwKa41xuCnZYImJxvT3OABkHNAxv65znanDJnJ2x+9IagoSE5I6CvolDDNB+aemSd81yZRvk/GjZqH7hwRgHtUekpS5jbJ9lwc/WoI8RNPxNJpdrD5iQwiSebOyMxIVfj7rflUqx3yx69qy5DWxoTHao3VmuRCPsfKZMj3ugFcX+qRafp8M85OCozt8K6S/gkSNvMCmQZCnrXY2nsQUZKpVsBSXt6jlRa84H4s9aVSJNKtT9h1L0cKVPUV2/L5EgAxlT0+VYQnjT9mj5ZLJ5H+YxT1h482fnrHf2MkcbbFkIbH0pVljLgafS5IcoszPyzMObuadFxy4IqPF1HcqlxbsDDKOdGHodxXfNzLgEVwy5LJB/2yMkB2VWOwz1rtnAOQox8RWR8R8E8Taxrcl2eIIobSN+a3jAbKjtkAAZ+Oan+F+K3ilTR+JR9l1RSVSRlxHcDOxRv1pnHa0zat6NCjmOPawB3xTyOCAVJHx9ajPM79q6WfYnm/WksJJGQE+8c1352R1+u9RbXHX0/eu45i2M7bYrWaiQLnALdfgNqTSZUMCAAc/D0oIuMnmIrtJBuOuDRs1Dwk2yBnH6inS5J5s7DAx3oVXAALb+oPauozjd22/eiagsOS2479fpTnmYA9flQgboWbPf17V0kvIBuMdATRBQQp3zkYqA4w4gTQ7GNYojc31y4itbVDhpXPp8B1J7CndX1u30yNDKXd5G5EjjXmd2PQAD/AJ61HaJpU1zqh1rWUT7dymOGIEEWyE+6D/iO2T9BtRX5AGcHaIuiaU/nsJb+4cz3UxH95I3vH5DoPgKkGcy3KRJuzMFGPnT1zKAhA226Clw9bTT6gLmNOZYj1PTJoq26M9kXO6tIbiKOOZQypjANA3OmQTXEEzj24T7OKki229MSHauzSmc8ZyXDOfNXpzD86VQw0vleQ+dIedi3vdKVDVL0NUfZ5k1PgPULXRIr6YMxdeY4OcD40fpXABfQWvJraQsE5+Y1ruoTwJ4bPPgE/Zs5Pyo/TLuOfw7jmUD2rb+lT0IrLPa3W5TuALWaXgqGdcskEjx/FRnapOMlTg0b4KSQjhaaOcr5bTOCD03JoziXRvsB+0Wx8y0Y7Eb8vwqMsfapIdy73FkYs22O9RuuaLZa5ZPBeRCQ+8pGzK3qp7GiEfIOdgKdWQqQwx8KgGinx3nEXDUqR3KnVtJUEGVV/tCegI/EB02qf0bivStXQi1ukWVDh4pfYdT6EGpN3WQqHAI9ahtW4X0jVmLXNlE7kY8wey//AJDejqT5BVcFiEiyxcyHIO+xzTgk5VxjJ+NZy/BeoadAItF4g1C0h3xFJiVR8ulCPo3HVupFtxJBODghpoipH6H/AJiioxfk1v0aqrLgNtn9M120wDAA4PTesigsPEJHXGv2LALy4aPI+fuddqdbSuP5R95xBYBh3WM+ueoWjoX7kDU/RrCyhiSDgds9/h+9dtMuCT+tZVbcL8WzujXfFkowebEVv3/TIqYj4Elu2f8Am+t6tdxvs6ecI0YfJflWqPsNv0TPEXHei6H91dXivcZwLeH25CfTA6fXFRVtrPFPETuunab/ACiyY+zc3m8zDvyx+vzqd0LhTRdIYmzsLeKbbmkK8zn/AOR3qxqEjxyAd9+tG14BuQ3D/DsGlsbi4kku7twBJc3Dc0jfD0A+AwKnJZAoGBhfShubbJP502Emu7hbe1UtK/bsPiaF2EdaTz3WKM+0TgelXjS7aOysY4oiG2yzD8R9ah7ThmGKxaGd+eZ8F5Bt9B8Km4kEMSxqdlGK6sUHHdkMkotKmN6lc/ZrOWUAnlUnaoK04h/9Na7vomhQNgbdR61OzFXQq4BU9QaAubaCWMxuimMj3e1Uld2jQlCqkh2C4juIklT3WGRmlTClY1CJsoGAKVEm36MLn1e7bwkcz4CMBGmO4qz8H3TN4TqXJ2iKj5VS+IrmCHw6sLByEflB65DVbLK8srXwujSG4iOIMEBh1xU0q/6K5JqXC8i8I7ea+0GSOJio85uY5+NabPbyiwS2hIZOjhxnNZl4E3kUeh3RkkCjzT1NaWdWiLERrIwHcLRxwWkbN1ElOvCKTra21nrEllby88iKHZT1XNBeZj8X503pOiTXvGWq8Vag0sdjCfKtYWGPPYD3j6qD+Z+VBahcSieWUdCxOMVx5oqL2LYLyIkg5z1rppSrbNmq4+upCuLhXC494b0ba6lb3A5opFYY77VK/JR42uScScgg7HFOfbCfeAOPhUUs2RlTtiulf8WcCtYlExHcAHmULj0xXX2lSOU4+FRQmGAM4yKAu9Ks7yZpZebnb0Yjp9ayaBRYoL5HQmORCnQsGBGRTkU4fDo2VbfIOQaqlpw7plukiRWsSpISzjlzzZ65qWsYorTIXCJjAHQDAo6kaibjZmA3O360/wCZhcsagJNat4ccjeYR2X/Wq9xZeald2BazleAL7XKh974H9aEcsW9KY0YOTot8+pwJL5auGkxnANd6dfXNvdCdX5T1BFZ3ot0ssUbOSshHtH41cdNuyMRzHfPespNMu8MVHbc1XStQF/bc4wHX3wK41e7ktbKSaGMyuo2Qd6qui3z2d3G6EcrbddjV3aJby3E1qOY9WQf0r0Mc9a/J52TF9cr8ELa39xNMiSW5RSgYtnofSnriQJEzHoBmupH5CQRykdsVWtU4r0u01IafdXCRzOMYJ9afjkk5JvgDbi+MO6/ZpW5WxkDrSqTis7VUHlIvKd+nWlUqn7OnXh/b/s8dTXc7xiJ5naNfdUnOKUVzMLdkEr8n+HmOKVKt4LJbmweCshi0O7nABkEowW3rZobmRrGN/ZDOyqcD1OKVKqQOXOlV/kjuNrh0l+zphYY8KqgYAqg3jEkqelKlXDm/Wz0OlXaRNpGk91eGYc/kW7yID0DDYH9aChUJZDlHUUqVLL9Acj7mMrcTRf3csi/JjTv80vYvduHPzwaVKuJM50x3+dXykffd8e6KJi1q8yuWQ5IB9mlSrWwj/wDOLxxy84UY/CvwpRSyTSZldnOM7nNKlUMrZmFRgbAVJIA9h7Q6rj96VKh0v+QaHIDoFjBNNeRspAjjd1I6ggZo2xJeFubqBsaVKvTl4OmHLJ3Tpn8pd+4q98L306QMA2wOKVKr4OSHUpUWDU0W5szJIo51zhhsa8jeMgKeIEMiseb2T1+NKlXYzy3ybxo8rPpdqzHcxr+1KlSoBP/Z" class="ui mini circular centered image"/><div style="margin-left:12px;font-size:18px"><a href="https://maxiee.github.io/">Maxiee Blog</a></div></div><div style="display:flex;flex-direction:row;align-items:center"><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/post">博客</a></div><div style="margin-left:26px" role="listbox" aria-expanded="false" class="ui dropdown" tabindex="0"><div class="text" role="alert" aria-live="polite">作品</div><i aria-hidden="true" class="dropdown icon"></i><div class="menu transition"><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/RayInfomd">RayInfo</a><div style="color:#CCCCCC">资讯阅读 App</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/MaxieeRNLabmd">MaxieeRNLab</a><div style="color:#CCCCCC">React Native 综合示例 APP</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/JiuShengmd">韭生</a><div style="color:#CCCCCC">roguelike 人生模拟器游戏</div></div></div></div></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/gallery">设计</a></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/about">关于</a></div></div></div><div style="outline:none" tabindex="-1" role="group"><div class="ui grid"><div class="row"><div style="margin-left:20px;margin-right:20px" class="column"><h1 class="ui header">react-static 静态网站搭建（三）：React 静态博客 Step by Step</h1><p style="margin-bottom:20px;color:gray">2019-03-18</p><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div><h2>前言</h2>
+<p>经过前面两篇文章，相信大家已经对静态博客和 react-static 有了充分的认识。在本节我们来一个实战环节，手把手教你如何用 react-static 搭建一个静态博客。</p>
+<h2>安装</h2>
+<p>首先需要安装 react-static ：</p>
+<pre><code style="background:#f5f7ff;padding:2px">$ yarn global add react-static
+# or
+$ npm install -g react-static
+</code></pre>
+<p>其中：</p>
+<ul>
+<li>react-static 作为全局命令进行安装</li>
+</ul>
+<h2>创建工程</h2>
+<p>在你想创建工程的目录执行以下命令：</p>
+<pre><code style="background:#f5f7ff;padding:2px">$ react-static create
+</code></pre>
+<p>命令行会提示几个问题：</p>
+<p>① 项目叫什么名字：</p>
+<pre><code style="background:#f5f7ff;padding:2px">? What should we name this project? (my-static-site)
+</code></pre>
+<p>输入一个自己想要的名称。</p>
+<p>② 选择哪种模板：</p>
+<pre><code style="background:#f5f7ff;padding:2px">? Select a template below... (Use arrow keys or type to search)
+❯ README.md
+  basic
+  blank
+  stress-test
+  typescript
+  Local Directory...
+  GIT Repository...
+</code></pre>
+<p>这里我选择了 typescript，因为我是 typescript 党，在这里顺道安利一下 😆</p>
+<p>之后就开始项目创建过程，react-static 会调用包管理器创建工程、安装依赖，因此需要等待几分钟时间。</p>
+<p>需要注意的是：我使用的包管理器是 Yarn，之前我在用 npm 创建工程的时候失败过一次。</p>
+<p>依赖安装好后，会提示你如何开始：</p>
+<pre><code style="background:#f5f7ff;padding:2px">=&gt; [✓] Project &quot;react-static-blog-demo&quot; created (89.7s)
+
+  =&gt; To get started:
+
+    cd &quot;react-static-blog-demo&quot;
+
+    yarn start - Start the development server
+    yarn build - Build for production
+    yarn serve - Test a production build locally
+</code></pre>
+<p>这几个命令都很有用，需要牢记。</p>
+<p>下面 <code style="background:#f5f7ff;padding:2px">cd &quot;react-static-blog-demo&quot;</code> 进入工程，开搞！</p>
+<h1>Hello world！</h1>
+<p>首先我们把项目先跑起来。在项目根目录，执行下面命令：</p>
+<pre><code style="background:#f5f7ff;padding:2px">yarn start
+</code></pre>
+<p>终端会显示以下信息：</p>
+<pre><code style="background:#f5f7ff;padding:2px">yarn run v1.13.0
+$ react-static start
+=&gt; Building Routes...
+=&gt; [✓] Routes Built (1.2s)
+=&gt; Building Templates
+=&gt; [✓] Templates Built
+=&gt; Building App Bundle...
+Starting type checking service...
+Using 1 worker with 2048MB memory limit
+=&gt; [✓] Build Complete (10.3s)
+=&gt; [✓] App serving at http://localhost:3000
+=&gt; File changed: /artifacts/react-static-templates.js
+=&gt; Updating build...
+=&gt; [✓] Build Updated (0.5s)
+</code></pre>
+<p>等了半天你会奇怪，为啥浏览器还没有打开呢？</p>
+<p>因为构建成功是不会自动打开浏览器的！！需要自己手动打开 🤣 </p>
+<p>在浏览器中输入地址 <a href="http://localhost:3000%EF%BC%8C%E4%BC%9A%E6%89%93%E5%BC%80%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%EF%BC%9A">http://localhost:3000，会打开项目首页：</a></p>
+<p><img style="max-width:60%" src="https://maxiee.github.io/images/ReactStatic301.png" class="ui centered image"/></p>
+<p>其中，我们发现：</p>
+<ul>
+<li>示例工程已经为我们搭建好一个博客站点了</li>
+<li>这个站点包括首页、关于、博客，完全满足一般的博客需求</li>
+<li>这也意味着我们不用从头开始</li>
+</ul>
+<p>进入 Blog 板块（/blog）看看：</p>
+<p><img style="max-width:60%" src="https://maxiee.github.io/images/ReactStatic302.png" class="ui centered image"/></p>
+<p>其中：</p>
+<ul>
+<li>实例工程还插入了很多 mock 数据</li>
+<li>后面我们会讲到，这些数据都是通过 API 接口在构建时获取的</li>
+</ul>
+<p>文章详情页（/blog/post/1/）：</p>
+<p><img style="max-width:60%" src="https://maxiee.github.io/images/ReactStatic303.png" class="ui centered image"/></p>
+<h2>项目工程</h2>
+<p>关于项目的整体结构，首先请参考 <a href="https://maxiee.github.io/post/ReactStatic2.md/">react-static 静态网站搭建（二）：react-static 介绍</a>。</p>
+<p>在此我们主要看工程目录结构：</p>
+<pre><code style="background:#f5f7ff;padding:2px">.
+├── README.md
+├── artifacts           // react-static 自动生成的项目描述
+│   ├── react-static-browser-plugins.js
+│   └── react-static-templates.js
+├── node_modules
+├── package.json        // 工程描述文件
+├── public              // 公共资源目录
+│   └── robots.txt
+├── src                 // 代码目录
+│   ├── App.tsx         // 网站整体结构定义
+│   ├── app.css         // 网站全局 css
+│   ├── components      // React 组件
+│   ├── containers      // 容器：Post.tsx 帖子页
+│   ├── index.tsx       // 网站入口，react-static 初始化相关，导入 App
+│   ├── pages           // 页面：404.tsx、about.tsx、blog.tsx、index.tsx
+│   └── types.ts        // 数据类型定义
+├── static.config.js    // react-static 配置文件
+├── tmp
+│   └── dev-server
+├── tsconfig.json       // TypeScript 配置脚本
+└── yarn.lock
+</code></pre>
+<p>其中，我们关心的有：</p>
+<h3>src/App.tsx</h3>
+<p>它定义了网站的整体框架：顶部导航栏、侧边栏，以及划定内容区的范围。各个页面都展示在内容区当中。</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import React from &#x27;react&#x27;
+import { Root, Routes } from &#x27;react-static&#x27;
+import { Link } from &#x27;@reach/router&#x27;
+import &#x27;./app.css&#x27;
+import FancyDiv from &#x27;@components/FancyDiv&#x27;
+
+function App() {
+  return (
+    &lt;Root&gt;
+      &lt;nav&gt;
+        &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;
+        &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+        &lt;Link to=&quot;/blog&quot;&gt;Blog&lt;/Link&gt;
+      &lt;/nav&gt;
+      &lt;div className=&quot;content&quot;&gt;
+        &lt;FancyDiv&gt;
+          &lt;Routes /&gt;
+        &lt;/FancyDiv&gt;
+      &lt;/div&gt;
+    &lt;/Root&gt;
+  )
+}
+
+export default App
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>Root 和 Routes 都来自 react-static，Routes 表示内容区</li>
+<li>项目使用了 @reach/router 的 Link 组件，用来做站内跳转</li>
+</ul>
+<h3>src/index.tsx</h3>
+<p>这个文件是网站的入口，主要用于 react-static 初始化，一般不需要改动：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import React from &#x27;react&#x27;
+import ReactDOM from &#x27;react-dom&#x27;
+
+// Your top level component
+import App from &#x27;./App&#x27;
+
+// Export your top level component as JSX (for static rendering)
+export default App
+
+// Render your app
+if (typeof document !== &#x27;undefined&#x27;) {
+  const renderMethod = module.hot
+    ? ReactDOM.render
+    : ReactDOM.hydrate || ReactDOM.render
+
+  const render = (Comp: Function) =&gt; {
+    renderMethod(&lt;Comp /&gt;, document.getElementById(&#x27;root&#x27;))
+  }
+
+  // Render!
+  render(App)
+
+  // Hot Module Replacement
+  if (module.hot) {
+    module.hot.accept(&#x27;./App&#x27;, () =&gt; render(require(&#x27;./App&#x27;).default))
+  }
+}
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>导入了 App.tsx</li>
+<li>初始化了热加载</li>
+</ul>
+<h3>src/pages/index.tsx</h3>
+<p>这个 index 不要与上一节搞混，它是网站的首页。</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import React from &#x27;react&#x27;
+import { withSiteData } from &#x27;react-static&#x27;
+
+export default withSiteData(() =&gt; (
+  &lt;div style={{ textAlign: &#x27;center&#x27; }}&gt;
+    &lt;h1&gt;
+      Welcome to React-Static &lt;br /&gt; + TypeScript
+    &lt;/h1&gt;
+    &lt;p&gt;
+      Learn{&#x27; &#x27;}
+      &lt;a href=&quot;https://github.com/sw-yx/react-typescript-cheatsheet&quot;&gt;
+        React + TypeScript
+      &lt;/a&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+      &lt;a href=&quot;https://twitter.com/swyx&quot;&gt;Report issues with this template&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+))
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>通过 withSiteData 这个高阶组件，能够拿到 static.config.js 中提供的 getSiteData，不过这里很简单，并没有从中获取数据</li>
+</ul>
+<h3>src/pages/blog.tsx</h3>
+<p>这里对应的是博客列表页：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import React from &#x27;react&#x27;
+import { withRouteData } from &#x27;react-static&#x27;
+import { Link } from &#x27;@reach/router&#x27;
+import { Post } from &#x27;../types&#x27;
+
+export default withRouteData(({ posts }: { posts: Post[] }) =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;It&#x27;s blog time.&lt;/h1&gt;
+    &lt;br /&gt;
+    All Posts:
+    &lt;ul&gt;
+      {posts.map(post =&gt; (
+        &lt;li key={post.id}&gt;
+          &lt;Link to={`/blog/post/${post.id}/`}&gt;{post.title}&lt;/Link&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  &lt;/div&gt;
+))
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>使用 withRouteData 这个高阶组件，拿到的是 static.config.js 向这个路径提供的数据，即博客列表</li>
+</ul>
+<h3>src/containers/Post.tsx</h3>
+<p>这对应的是文章详情页。</p>
+<p>眼尖的同学会发现代码路径变到了 containers 下，这是因为在 react-static 中，一级路由会自动映射到 <code style="background:#f5f7ff;padding:2px">src/pages/*.tsx</code> 下，而二级路由需要手动指定组件。当然，containers 的命名没有限制，改名叫 <code style="background:#f5f7ff;padding:2px">src/subPage/Post.tsx</code> 也没问题，只要在 static.config.js 配置二级路由组建时写对路径就行。</p>
+<p>文章详情页的代码为：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import React from &#x27;react&#x27;
+import { withRouteData } from &#x27;react-static&#x27;
+import { Link } from &#x27;@reach/router&#x27;
+import { Post } from &#x27;../types&#x27;
+
+export default withRouteData(({ post }: { post: Post }) =&gt; (
+  &lt;div&gt;
+    &lt;Link to=&quot;/blog/&quot;&gt;{&#x27;&lt;&#x27;} Back&lt;/Link&gt;
+    &lt;br /&gt;
+    &lt;h3&gt;{post.title}&lt;/h3&gt;
+    &lt;p&gt;{post.body}&lt;/p&gt;
+  &lt;/div&gt;
+))
+</code></pre></pre>
+<p>其中可以看出，与博客列表页所使用的套路是完全一致的，都是通过 withRouteData 这个高阶组件，来拿去对应的数据。</p>
+<p>从这里可以看出，react-static 一单适应它定义的规则，使用起来是非常简单的！ 🎉</p>
+<h2>数据提供</h2>
+<p>下面我们来看 static.config.js 中，是如何向这些页面提供数据的：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">import axios from &#x27;axios&#x27;
+import path from &#x27;path&#x27;
+
+export default {
+  plugins: [&#x27;react-static-plugin-typescript&#x27;],          // 使用 TypeScript
+  entry: path.join(__dirname, &#x27;src&#x27;, &#x27;index.tsx&#x27;),      // 指定入口文件
+  getSiteData: () =&gt; ({                                 // 指定 SiteData
+    title: &#x27;React Static&#x27;,
+  }),
+  getRoutes: async () =&gt; {                              // 定义路由
+    const { data: posts } = await axios.get(            // 数据准备阶段
+      &#x27;https://jsonplaceholder.typicode.com/posts&#x27;,     // 通过这个 API 拉取数据
+    )
+    return [                                            // 返回路由表
+      {
+        path: &#x27;/blog&#x27;,                                  // 博客列表页
+        getData: () =&gt; ({                               // 提供博客列表页的 RouteData
+          posts,
+        }),
+        children: posts.map(post =&gt; ({                  // 子页面：各个文章详情页
+          path: `/post/${post.id}`,                     // 路径
+          component: &#x27;src/containers/Post&#x27;,             // 指定组件
+          getData: () =&gt; ({                             // 提供文章详情页的 RouteData
+            post,
+          }),
+        })),
+      },
+    ]
+  },
+}
+</code></pre></pre>
+<p>是不是非常简单直观！其中：</p>
+<ul>
+<li>数据提供是我们直接写 js 代码来获取的</li>
+<li>你会发现：src/pages/index.tsx、src/pages/about.tsx 都没再上面出现，这是因为 react-static 中有一个约定，src/pages/ 下的页面(高阶组件)，会自动为他们配置路径。但是如果你要向它们提供数据的话，还得在上面来指定，如 /blog。</li>
+</ul>
+<h2>数据从何处来？</h2>
+<p>在示例工程中，数据是调用 API 接口来获取的。</p>
+<p>有一点需要弄清的是，这里从 API 获取数据发生在构建时，只在构建时执行一次。react-static 会拿这一次获取到的数据生成静态网站。</p>
+<p>这也就是说，当一次构建发布后，如果 API 有了更新，线上的网站不会更新，除非再执行一次构建过程。别忘了我们是静态网站！</p>
+<p>能不能不从 API 中获取呢？当然可以。</p>
+<p>上面代码中 getRoutes 就是个 node.js 的方法，怎么获取数据完全由你编写的 js 代码控制。</p>
+<p>我们开下脑洞，可以如何获取数据呢？</p>
+<ul>
+<li>扫描某个文件夹下的 Markdown (maxiee.github.io 就是这种方法)</li>
+<li>读取某个 SQLite 数据库</li>
+<li>读取 MySQL、MongoDB</li>
+<li>读取 OrgMode 笔记</li>
+<li>……</li>
+</ul>
+<h2>数据的 json 保存</h2>
+<p>react-static 采取数据与模板分离的模式。</p>
+<p>我们在 react-static 中提供数据，在模板中通过 withRouteData 接收数据。</p>
+<p>这些数据在构建时会被保存为 json 文件。</p>
+<p>我们下面来验证这个过程，首先构建项目：</p>
+<pre><code style="background:#f5f7ff;padding:2px">yarn build
+</code></pre>
+<p>经历了 25.02s 之后，我完成了构建。</p>
+<p>你会想一个空的工程为何构建需要这么多时间呢？这是因为要启动 Pyppeteer 进行 DOM snapshot。</p>
+<p>我在实践中发现，当我有上百篇文章需要静态化的时候，构建时间也不过 80.44s。平均一个页面增长 0.5s，这个速度是非常令人满意的！</p>
+<p>说到这我在多说两句，在使用 react-static 之前，我独立开发了一个静态网站生成器。一开始用着挺好，可它的致命缺陷是，生成时间随着页面数量急速上升，同时稳定性也下降，开始出现构建失败的情况。</p>
+<p>这件事给我的经验就是，没有两把刷子就不要造车轮，先提高自己的姿势水平。所以我现在不自己瞎折腾了，改为翻译优秀文章，收获与提高更大！</p>
+<p>构建完成后的静态站点位于 dist 目录下：</p>
+<pre><code style="background:#f5f7ff;padding:2px">├── 404
+│   └── routeInfo.json
+├── 404.html
+├── about
+│   ├── index.html
+│   └── routeInfo.json
+├── blog
+│   ├── index.html
+│   ├── post
+│   └── routeInfo.json
+├── index.html
+├── main.6643724f.js
+├── main.6643724f.js.map
+├── robots.txt
+├── routeInfo.json
+├── static.4e7b9259.js
+├── static.4e7b9259.js.map
+├── styles.97353e12.css
+</code></pre>
+<p>我们主要来看 <code style="background:#f5f7ff;padding:2px">blog/post/</code> 下，上面的结构中没有展开这块，我们进去后继续看：</p>
+<pre><code style="background:#f5f7ff;padding:2px">.
+├── 1
+│   ├── index.html
+│   └── routeInfo.json
+├── 10
+│   ├── index.html
+│   └── routeInfo.json
+├── 100
+│   ├── index.html
+│   └── routeInfo.json
+├── 11
+│   ├── index.html
+│   └── routeInfo.json
+├── 12
+│   ├── index.html
+│   └── routeInfo.json
+├── 13
+│   ├── index.html
+│   └── routeInfo.json
+├── 14
+│   ├── index.html
+│   └── routeInfo.json
+……
+</code></pre>
+<p>我们会看到如下结构，其中：</p>
+<ul>
+<li>以数字命名的目录自然想到就是我们的 postID</li>
+<li>每个目录下都包含两个文件<ul>
+<li>index.html：静态化网页，文章内容被固化在 HTML 里面了，待会儿我们详细看一看</li>
+<li>routeInfo.json：static.config.js 中为每个帖子提供的数据被保存为 routeInfo.json</li>
+</ul></li>
+</ul>
+<h3>routeInfo.json 是干嘛的</h3>
+<p>我们首先会有疑问，routeInfo.json 是干嘛的？index.html 中把帖子数据固化进去了，为啥外面还要存一份 routeInfo.json 呢？</p>
+<p>让我们设想一种场景，从 1 号文章跳转到 2 号文章，如何做呢？</p>
+<ul>
+<li>我们可以从 1 号的 index.html 跳转到 2 号的 index.html</li>
+<li>但是这样会把 2 号的 index.html，重新下载一遍</li>
+<li>我们已经知道，1 号与 2 号的 index.html 除了内容区外都是一样的，如果重新下载一遍，除了内容外的数据下来都是浪费</li>
+<li>能不能只下载内容呢？</li>
+<li>react-static 说可以，只需要下载 2 号的 routeInfo.json 就可以了</li>
+</ul>
+<p>所以说，react-static 构建出来的站点速度非常非常快！⚡️⚡️而 routeInfo.json 只是其针对速度的优化之一！</p>
+<p>我们以 1 号博客为例，看看他的 routeInfo.json：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">{
+    &quot;template&quot;: &quot;../src/containers/Post&quot;,
+    &quot;sharedHashesByProp&quot;: {},
+    &quot;data&quot;: {
+        &quot;post&quot;: {
+            &quot;userId&quot;: 1,
+            &quot;id&quot;: 1,
+            &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;,
+            &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot;
+        }
+    },
+    &quot;path&quot;: &quot;blog/post/1&quot;
+}
+</code></pre></pre>
+<p>可以看出：</p>
+<ul>
+<li>这就是我们在 static.config.js 中提供的数据，附带了一些 meta 信息，比如指定模板路径</li>
+</ul>
+<h3>dist/blog/post/1/index.html</h3>
+<p>下面我们再来看看 1 号博客的静态 HTML：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;link rel=&quot;preload&quot; as=&quot;script&quot; href=&quot;/templates/src-containers-Post.634b5ebb.js&quot; /&gt;
+    &lt;link rel=&quot;preload&quot; as=&quot;script&quot; href=&quot;/templates/styles.97353e12.js&quot; /&gt;
+    &lt;link rel=&quot;preload&quot; as=&quot;script&quot; href=&quot;/templates/vendors~main.9dfd262a.js&quot; /&gt;
+    &lt;link rel=&quot;preload&quot; as=&quot;script&quot; href=&quot;/main.6643724f.js&quot; /&gt;
+    &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;/styles.97353e12.css&quot; /&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/styles.97353e12.css&quot; /&gt;
+    &lt;meta charSet=&quot;UTF-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no&quot; /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;
+        &lt;div style=&quot;outline:none&quot; tabindex=&quot;-1&quot; role=&quot;group&quot;&gt;
+            &lt;nav&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;a href=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;a href=&quot;/blog&quot;&gt;Blog&lt;/a&gt;&lt;/nav&gt;
+            &lt;div class=&quot;content&quot;&gt;
+                &lt;div style=&quot;border:1px solid red&quot;&gt;
+                    &lt;div&gt;&lt;a href=&quot;/blog/&quot;&gt;&amp;lt;
+                            &lt;!-- --&gt; Back&lt;/a&gt;&lt;br /&gt;
+                        &lt;h3&gt;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&lt;/h3&gt;
+                        &lt;p&gt;quia et suscipit
+                            suscipit recusandae consequuntur expedita et cum
+                            reprehenderit molestiae ut ut quas totam
+                            nostrum rerum est autem sunt rem eveniet architecto&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        window.__routeInfo = { &quot;template&quot;: &quot;../src/containers/Post&quot;, &quot;sharedHashesByProp&quot;: {}, &quot;data&quot;: { &quot;post&quot;: { &quot;userId&quot;: 1, &quot;id&quot;: 1, &quot;title&quot;: &quot;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&quot;, &quot;body&quot;: &quot;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&quot; } }, &quot;path&quot;: &quot;blog/post/1&quot;, &quot;siteData&quot;: { &quot;title&quot;: &quot;React Static&quot; } };&lt;/script&gt;
+    &lt;script defer=&quot;&quot; type=&quot;text/javascript&quot; src=&quot;/templates/src-containers-Post.634b5ebb.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer=&quot;&quot; type=&quot;text/javascript&quot; src=&quot;/templates/styles.97353e12.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer=&quot;&quot; type=&quot;text/javascript&quot; src=&quot;/templates/vendors~main.9dfd262a.js&quot;&gt;&lt;/script&gt;
+    &lt;script defer=&quot;&quot; type=&quot;text/javascript&quot; src=&quot;/main.6643724f.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>head 去加载了一堆 js，带有 preload 属性，是预加载的 js</li>
+<li>在 body 末尾也加载一堆 js</li>
+<li>这些 js 我们先不去管它</li>
+<li>中间的 body 部分是已经固化的文章，这就意味着，就算这些 js 都没加载完，只要 HTML 下载下来，文章就已经展示出来了</li>
+<li>我们会发现有一个奇怪的 <code style="background:#f5f7ff;padding:2px">window.__routeInfo</code> 脚本，这里面的内容一看就是上一节的 routeInfo.json，这是怎么回事呢？</li>
+<li>原来，HTML 下载下来，文章展示出来后并没有结束。js 还在继续下载着，一旦下载完成，会运行 React 框架，运行你的 APP，运行你的 1 号文章的组件代码，传入 <code style="background:#f5f7ff;padding:2px">window.__routeInfo</code>，又把你这篇文章的代码重新跑了一遍，并再次输出到网页上</li>
+<li>但是由于前后页面的 DOM 是完全一样的，用户对此是无感知的(背后竟然干了这种事情！)</li>
+</ul>
+<p>为什么要再跑一次呢？</p>
+<p>请参见我 <a href="https://maxiee.github.io/post/ReactStatic1.md/">react-static 静态网站搭建（一）：什么是 React 静态网站？</a> 中的最后一节 <strong>One more thing</strong>。</p>
+<p>一句话概括就是：<strong>就是让用户用访问静态网站的速度，得到 SPA 的丰富体验。</strong></p>
+<h2>之后呢</h2>
+<p>示例工程我们已经分析地十分透彻了。之后做什么呢？</p>
+<p>之后就是该 Getting your hands dirty 了：</p>
+<ul>
+<li>添加或者自己编写一个好看的 UI 库</li>
+<li>修改各个页面的模板</li>
+<li>选择一种适合自己工作流的数据提供方式</li>
+<li>开始编写自己的博客吧！</li>
+</ul>
+<h2>结论</h2>
+<p>经过这三篇的系列文章，我们已经明白了什么是静态网站，什么是 react-static，如何创建静态站点，尤其是静态博客。</p>
+<p>从下一篇开始，我将介绍各种用 react-static 创建网站的实用技巧。欢迎持续关注！</p></div><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div></div></div></div></div></div></div></div><script type="text/javascript">
+    window.__routeInfo = JSON.parse("{\"template\":\"/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post\",\"sharedHashesByProp\":{},\"data\":{\"post\":{\"name\":\"react-static \u9759\u6001\u7F51\u7AD9\u642D\u5EFA\uFF08\u4E09\uFF09\uFF1AReact \u9759\u6001\u535A\u5BA2 Step by Step\",\"desc\":\"\u7ECF\u8FC7\u524D\u9762\u4E24\u7BC7\u6587\u7AE0\uFF0C\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u5BF9\u9759\u6001\u535A\u5BA2\u548C react-static \u6709\u4E86\u5145\u5206\u7684\u8BA4\u8BC6\u3002\u5728\u672C\u8282\u6211\u4EEC\u6765\u4E00\u4E2A\u5B9E\u6218\u73AF\u8282\uFF0C\u624B\u628A\u624B\u6559\u4F60\u5982\u4F55\u7528 react-static \u642D\u5EFA\u4E00\u4E2A\u9759\u6001\u535A\u5BA2\u3002\",\"type\":\"md\",\"link\":\"ReactStatic3md\",\"create\":\"2019-03-18\",\"filename\":\"ReactStatic3.md\"},\"content\":\"## \u524D\u8A00\\n\\n\u7ECF\u8FC7\u524D\u9762\u4E24\u7BC7\u6587\u7AE0\uFF0C\u76F8\u4FE1\u5927\u5BB6\u5DF2\u7ECF\u5BF9\u9759\u6001\u535A\u5BA2\u548C react-static \u6709\u4E86\u5145\u5206\u7684\u8BA4\u8BC6\u3002\u5728\u672C\u8282\u6211\u4EEC\u6765\u4E00\u4E2A\u5B9E\u6218\u73AF\u8282\uFF0C\u624B\u628A\u624B\u6559\u4F60\u5982\u4F55\u7528 react-static \u642D\u5EFA\u4E00\u4E2A\u9759\u6001\u535A\u5BA2\u3002\\n\\n## \u5B89\u88C5\\n\\n\u9996\u5148\u9700\u8981\u5B89\u88C5 react-static \uFF1A\\n\\n```\\n$ yarn global add react-static\\n# or\\n$ npm install -g react-static\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- react-static \u4F5C\u4E3A\u5168\u5C40\u547D\u4EE4\u8FDB\u884C\u5B89\u88C5\\n\\n## \u521B\u5EFA\u5DE5\u7A0B\\n\\n\u5728\u4F60\u60F3\u521B\u5EFA\u5DE5\u7A0B\u7684\u76EE\u5F55\u6267\u884C\u4EE5\u4E0B\u547D\u4EE4\uFF1A\\n\\n```\\n$ react-static create\\n```\\n\\n\u547D\u4EE4\u884C\u4F1A\u63D0\u793A\u51E0\u4E2A\u95EE\u9898\uFF1A\\n\\n\u2460 \u9879\u76EE\u53EB\u4EC0\u4E48\u540D\u5B57\uFF1A\\n\\n```\\n? What should we name this project? (my-static-site)\\n```\\n\\n\u8F93\u5165\u4E00\u4E2A\u81EA\u5DF1\u60F3\u8981\u7684\u540D\u79F0\u3002\\n\\n\u2461 \u9009\u62E9\u54EA\u79CD\u6A21\u677F\uFF1A\\n\\n```\\n? Select a template below... (Use arrow keys or type to search)\\n\u276F README.md\\n  basic\\n  blank\\n  stress-test\\n  typescript\\n  Local Directory...\\n  GIT Repository...\\n```\\n\\n\u8FD9\u91CC\u6211\u9009\u62E9\u4E86 typescript\uFF0C\u56E0\u4E3A\u6211\u662F typescript \u515A\uFF0C\u5728\u8FD9\u91CC\u987A\u9053\u5B89\u5229\u4E00\u4E0B \uD83D\uDE06\\n\\n\u4E4B\u540E\u5C31\u5F00\u59CB\u9879\u76EE\u521B\u5EFA\u8FC7\u7A0B\uFF0Creact-static \u4F1A\u8C03\u7528\u5305\u7BA1\u7406\u5668\u521B\u5EFA\u5DE5\u7A0B\u3001\u5B89\u88C5\u4F9D\u8D56\uFF0C\u56E0\u6B64\u9700\u8981\u7B49\u5F85\u51E0\u5206\u949F\u65F6\u95F4\u3002\\n\\n\u9700\u8981\u6CE8\u610F\u7684\u662F\uFF1A\u6211\u4F7F\u7528\u7684\u5305\u7BA1\u7406\u5668\u662F Yarn\uFF0C\u4E4B\u524D\u6211\u5728\u7528 npm \u521B\u5EFA\u5DE5\u7A0B\u7684\u65F6\u5019\u5931\u8D25\u8FC7\u4E00\u6B21\u3002\\n\\n\u4F9D\u8D56\u5B89\u88C5\u597D\u540E\uFF0C\u4F1A\u63D0\u793A\u4F60\u5982\u4F55\u5F00\u59CB\uFF1A\\n\\n```\\n=> [\u2713] Project \\\"react-static-blog-demo\\\" created (89.7s)\\n\\n  => To get started:\\n\\n    cd \\\"react-static-blog-demo\\\"\\n\\n    yarn start - Start the development server\\n    yarn build - Build for production\\n    yarn serve - Test a production build locally\\n```\\n\\n\u8FD9\u51E0\u4E2A\u547D\u4EE4\u90FD\u5F88\u6709\u7528\uFF0C\u9700\u8981\u7262\u8BB0\u3002\\n\\n\u4E0B\u9762 `cd \\\"react-static-blog-demo\\\"` \u8FDB\u5165\u5DE5\u7A0B\uFF0C\u5F00\u641E\uFF01\\n\\n# Hello world\uFF01\\n\\n\u9996\u5148\u6211\u4EEC\u628A\u9879\u76EE\u5148\u8DD1\u8D77\u6765\u3002\u5728\u9879\u76EE\u6839\u76EE\u5F55\uFF0C\u6267\u884C\u4E0B\u9762\u547D\u4EE4\uFF1A\\n\\n```\\nyarn start\\n```\\n\\n\u7EC8\u7AEF\u4F1A\u663E\u793A\u4EE5\u4E0B\u4FE1\u606F\uFF1A\\n\\n```\\nyarn run v1.13.0\\n$ react-static start\\n=> Building Routes...\\n=> [\u2713] Routes Built (1.2s)\\n=> Building Templates\\n=> [\u2713] Templates Built\\n=> Building App Bundle...\\nStarting type checking service...\\nUsing 1 worker with 2048MB memory limit\\n=> [\u2713] Build Complete (10.3s)\\n=> [\u2713] App serving at http://localhost:3000\\n=> File changed: /artifacts/react-static-templates.js\\n=> Updating build...\\n=> [\u2713] Build Updated (0.5s)\\n```\\n\\n\u7B49\u4E86\u534A\u5929\u4F60\u4F1A\u5947\u602A\uFF0C\u4E3A\u5565\u6D4F\u89C8\u5668\u8FD8\u6CA1\u6709\u6253\u5F00\u5462\uFF1F\\n\\n\u56E0\u4E3A\u6784\u5EFA\u6210\u529F\u662F\u4E0D\u4F1A\u81EA\u52A8\u6253\u5F00\u6D4F\u89C8\u5668\u7684\uFF01\uFF01\u9700\u8981\u81EA\u5DF1\u624B\u52A8\u6253\u5F00 \uD83E\uDD23 \\n\\n\u5728\u6D4F\u89C8\u5668\u4E2D\u8F93\u5165\u5730\u5740 http://localhost:3000\uFF0C\u4F1A\u6253\u5F00\u9879\u76EE\u9996\u9875\uFF1A\\n\\n![](image/ReactStatic301.png)\\n\\n\u5176\u4E2D\uFF0C\u6211\u4EEC\u53D1\u73B0\uFF1A\\n\\n- \u793A\u4F8B\u5DE5\u7A0B\u5DF2\u7ECF\u4E3A\u6211\u4EEC\u642D\u5EFA\u597D\u4E00\u4E2A\u535A\u5BA2\u7AD9\u70B9\u4E86\\n- \u8FD9\u4E2A\u7AD9\u70B9\u5305\u62EC\u9996\u9875\u3001\u5173\u4E8E\u3001\u535A\u5BA2\uFF0C\u5B8C\u5168\u6EE1\u8DB3\u4E00\u822C\u7684\u535A\u5BA2\u9700\u6C42\\n- \u8FD9\u4E5F\u610F\u5473\u7740\u6211\u4EEC\u4E0D\u7528\u4ECE\u5934\u5F00\u59CB\\n\\n\u8FDB\u5165 Blog \u677F\u5757\uFF08/blog\uFF09\u770B\u770B\uFF1A\\n\\n![](image/ReactStatic302.png)\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u5B9E\u4F8B\u5DE5\u7A0B\u8FD8\u63D2\u5165\u4E86\u5F88\u591A mock \u6570\u636E\\n- \u540E\u9762\u6211\u4EEC\u4F1A\u8BB2\u5230\uFF0C\u8FD9\u4E9B\u6570\u636E\u90FD\u662F\u901A\u8FC7 API \u63A5\u53E3\u5728\u6784\u5EFA\u65F6\u83B7\u53D6\u7684\\n\\n\u6587\u7AE0\u8BE6\u60C5\u9875\uFF08/blog/post/1/\uFF09\uFF1A\\n\\n![](image/ReactStatic303.png)\\n\\n## \u9879\u76EE\u5DE5\u7A0B\\n\\n\u5173\u4E8E\u9879\u76EE\u7684\u6574\u4F53\u7ED3\u6784\uFF0C\u9996\u5148\u8BF7\u53C2\u8003 [react-static \u9759\u6001\u7F51\u7AD9\u642D\u5EFA\uFF08\u4E8C\uFF09\uFF1Areact-static \u4ECB\u7ECD](https://maxiee.github.io/post/ReactStatic2.md/)\u3002\\n\\n\u5728\u6B64\u6211\u4EEC\u4E3B\u8981\u770B\u5DE5\u7A0B\u76EE\u5F55\u7ED3\u6784\uFF1A\\n\\n```\\n.\\n\u251C\u2500\u2500 README.md\\n\u251C\u2500\u2500 artifacts\\t\\t\\t// react-static \u81EA\u52A8\u751F\u6210\u7684\u9879\u76EE\u63CF\u8FF0\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 react-static-browser-plugins.js\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 react-static-templates.js\\n\u251C\u2500\u2500 node_modules\\n\u251C\u2500\u2500 package.json\\t\\t// \u5DE5\u7A0B\u63CF\u8FF0\u6587\u4EF6\\n\u251C\u2500\u2500 public\\t\\t\\t\\t// \u516C\u5171\u8D44\u6E90\u76EE\u5F55\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 robots.txt\\n\u251C\u2500\u2500 src\\t\\t\\t\\t\\t// \u4EE3\u7801\u76EE\u5F55\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 App.tsx\\t\\t\\t// \u7F51\u7AD9\u6574\u4F53\u7ED3\u6784\u5B9A\u4E49\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 app.css\\t\\t\\t// \u7F51\u7AD9\u5168\u5C40 css\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 components\\t\\t// React \u7EC4\u4EF6\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 containers\\t\\t// \u5BB9\u5668\uFF1APost.tsx \u5E16\u5B50\u9875\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.tsx\\t\\t// \u7F51\u7AD9\u5165\u53E3\uFF0Creact-static \u521D\u59CB\u5316\u76F8\u5173\uFF0C\u5BFC\u5165 App\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 pages\\t\\t\\t// \u9875\u9762\uFF1A404.tsx\u3001about.tsx\u3001blog.tsx\u3001index.tsx\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 types.ts\\t\\t// \u6570\u636E\u7C7B\u578B\u5B9A\u4E49\\n\u251C\u2500\u2500 static.config.js\\t// react-static \u914D\u7F6E\u6587\u4EF6\\n\u251C\u2500\u2500 tmp\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 dev-server\\n\u251C\u2500\u2500 tsconfig.json\\t\\t// TypeScript \u914D\u7F6E\u811A\u672C\\n\u2514\u2500\u2500 yarn.lock\\n```\\n\\n\u5176\u4E2D\uFF0C\u6211\u4EEC\u5173\u5FC3\u7684\u6709\uFF1A\\n\\n### src/App.tsx\\n\\n\u5B83\u5B9A\u4E49\u4E86\u7F51\u7AD9\u7684\u6574\u4F53\u6846\u67B6\uFF1A\u9876\u90E8\u5BFC\u822A\u680F\u3001\u4FA7\u8FB9\u680F\uFF0C\u4EE5\u53CA\u5212\u5B9A\u5185\u5BB9\u533A\u7684\u8303\u56F4\u3002\u5404\u4E2A\u9875\u9762\u90FD\u5C55\u793A\u5728\u5185\u5BB9\u533A\u5F53\u4E2D\u3002\\n\\n```tsx\\nimport React from 'react'\\nimport { Root, Routes } from 'react-static'\\nimport { Link } from '@reach/router'\\nimport './app.css'\\nimport FancyDiv from '@components/FancyDiv'\\n\\nfunction App() {\\n  return (\\n    <Root>\\n      <nav>\\n        <Link to=\\\"/\\\">Home</Link>\\n        <Link to=\\\"/about\\\">About</Link>\\n        <Link to=\\\"/blog\\\">Blog</Link>\\n      </nav>\\n      <div className=\\\"content\\\">\\n        <FancyDiv>\\n          <Routes />\\n        </FancyDiv>\\n      </div>\\n    </Root>\\n  )\\n}\\n\\nexport default App\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- Root \u548C Routes \u90FD\u6765\u81EA react-static\uFF0CRoutes \u8868\u793A\u5185\u5BB9\u533A\\n- \u9879\u76EE\u4F7F\u7528\u4E86 @reach/router \u7684 Link \u7EC4\u4EF6\uFF0C\u7528\u6765\u505A\u7AD9\u5185\u8DF3\u8F6C\\n\\n### src/index.tsx\\n\\n\u8FD9\u4E2A\u6587\u4EF6\u662F\u7F51\u7AD9\u7684\u5165\u53E3\uFF0C\u4E3B\u8981\u7528\u4E8E react-static \u521D\u59CB\u5316\uFF0C\u4E00\u822C\u4E0D\u9700\u8981\u6539\u52A8\uFF1A\\n\\n```tsx\\nimport React from 'react'\\nimport ReactDOM from 'react-dom'\\n\\n// Your top level component\\nimport App from './App'\\n\\n// Export your top level component as JSX (for static rendering)\\nexport default App\\n\\n// Render your app\\nif (typeof document !== 'undefined') {\\n  const renderMethod = module.hot\\n    ? ReactDOM.render\\n    : ReactDOM.hydrate || ReactDOM.render\\n\\n  const render = (Comp: Function) => {\\n    renderMethod(<Comp />, document.getElementById('root'))\\n  }\\n\\n  // Render!\\n  render(App)\\n\\n  // Hot Module Replacement\\n  if (module.hot) {\\n    module.hot.accept('./App', () => render(require('./App').default))\\n  }\\n}\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u5BFC\u5165\u4E86 App.tsx\\n- \u521D\u59CB\u5316\u4E86\u70ED\u52A0\u8F7D\\n\\n### src/pages/index.tsx\\n\\n\u8FD9\u4E2A index \u4E0D\u8981\u4E0E\u4E0A\u4E00\u8282\u641E\u6DF7\uFF0C\u5B83\u662F\u7F51\u7AD9\u7684\u9996\u9875\u3002\\n\\n```tsx\\nimport React from 'react'\\nimport { withSiteData } from 'react-static'\\n\\nexport default withSiteData(() => (\\n  <div style={{ textAlign: 'center' }}>\\n    <h1>\\n      Welcome to React-Static <br /> + TypeScript\\n    </h1>\\n    <p>\\n      Learn{' '}\\n      <a href=\\\"https://github.com/sw-yx/react-typescript-cheatsheet\\\">\\n        React + TypeScript\\n      </a>\\n    </p>\\n    <p>\\n      <a href=\\\"https://twitter.com/swyx\\\">Report issues with this template</a>\\n    </p>\\n  </div>\\n))\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u901A\u8FC7 withSiteData \u8FD9\u4E2A\u9AD8\u9636\u7EC4\u4EF6\uFF0C\u80FD\u591F\u62FF\u5230 static.config.js \u4E2D\u63D0\u4F9B\u7684 getSiteData\uFF0C\u4E0D\u8FC7\u8FD9\u91CC\u5F88\u7B80\u5355\uFF0C\u5E76\u6CA1\u6709\u4ECE\u4E2D\u83B7\u53D6\u6570\u636E\\n\\n### src/pages/blog.tsx\\n\\n\u8FD9\u91CC\u5BF9\u5E94\u7684\u662F\u535A\u5BA2\u5217\u8868\u9875\uFF1A\\n\\n```tsx\\nimport React from 'react'\\nimport { withRouteData } from 'react-static'\\nimport { Link } from '@reach/router'\\nimport { Post } from '../types'\\n\\nexport default withRouteData(({ posts }: { posts: Post[] }) => (\\n  <div>\\n    <h1>It's blog time.</h1>\\n    <br />\\n    All Posts:\\n    <ul>\\n      {posts.map(post => (\\n        <li key={post.id}>\\n          <Link to={`/blog/post/${post.id}/`}>{post.title}</Link>\\n        </li>\\n      ))}\\n    </ul>\\n  </div>\\n))\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u4F7F\u7528 withRouteData \u8FD9\u4E2A\u9AD8\u9636\u7EC4\u4EF6\uFF0C\u62FF\u5230\u7684\u662F static.config.js \u5411\u8FD9\u4E2A\u8DEF\u5F84\u63D0\u4F9B\u7684\u6570\u636E\uFF0C\u5373\u535A\u5BA2\u5217\u8868\\n\\n### src/containers/Post.tsx\\n\\n\u8FD9\u5BF9\u5E94\u7684\u662F\u6587\u7AE0\u8BE6\u60C5\u9875\u3002\\n\\n\u773C\u5C16\u7684\u540C\u5B66\u4F1A\u53D1\u73B0\u4EE3\u7801\u8DEF\u5F84\u53D8\u5230\u4E86 containers \u4E0B\uFF0C\u8FD9\u662F\u56E0\u4E3A\u5728 react-static \u4E2D\uFF0C\u4E00\u7EA7\u8DEF\u7531\u4F1A\u81EA\u52A8\u6620\u5C04\u5230 `src/pages/*.tsx` \u4E0B\uFF0C\u800C\u4E8C\u7EA7\u8DEF\u7531\u9700\u8981\u624B\u52A8\u6307\u5B9A\u7EC4\u4EF6\u3002\u5F53\u7136\uFF0Ccontainers \u7684\u547D\u540D\u6CA1\u6709\u9650\u5236\uFF0C\u6539\u540D\u53EB `src/subPage/Post.tsx` \u4E5F\u6CA1\u95EE\u9898\uFF0C\u53EA\u8981\u5728 static.config.js \u914D\u7F6E\u4E8C\u7EA7\u8DEF\u7531\u7EC4\u5EFA\u65F6\u5199\u5BF9\u8DEF\u5F84\u5C31\u884C\u3002\\n\\n\u6587\u7AE0\u8BE6\u60C5\u9875\u7684\u4EE3\u7801\u4E3A\uFF1A\\n\\n```tsx\\nimport React from 'react'\\nimport { withRouteData } from 'react-static'\\nimport { Link } from '@reach/router'\\nimport { Post } from '../types'\\n\\nexport default withRouteData(({ post }: { post: Post }) => (\\n  <div>\\n    <Link to=\\\"/blog/\\\">{'<'} Back</Link>\\n    <br />\\n    <h3>{post.title}</h3>\\n    <p>{post.body}</p>\\n  </div>\\n))\\n```\\n\\n\u5176\u4E2D\u53EF\u4EE5\u770B\u51FA\uFF0C\u4E0E\u535A\u5BA2\u5217\u8868\u9875\u6240\u4F7F\u7528\u7684\u5957\u8DEF\u662F\u5B8C\u5168\u4E00\u81F4\u7684\uFF0C\u90FD\u662F\u901A\u8FC7 withRouteData \u8FD9\u4E2A\u9AD8\u9636\u7EC4\u4EF6\uFF0C\u6765\u62FF\u53BB\u5BF9\u5E94\u7684\u6570\u636E\u3002\\n\\n\u4ECE\u8FD9\u91CC\u53EF\u4EE5\u770B\u51FA\uFF0Creact-static \u4E00\u5355\u9002\u5E94\u5B83\u5B9A\u4E49\u7684\u89C4\u5219\uFF0C\u4F7F\u7528\u8D77\u6765\u662F\u975E\u5E38\u7B80\u5355\u7684\uFF01 \uD83C\uDF89\\n\\n## \u6570\u636E\u63D0\u4F9B\\n\\n\u4E0B\u9762\u6211\u4EEC\u6765\u770B static.config.js \u4E2D\uFF0C\u662F\u5982\u4F55\u5411\u8FD9\u4E9B\u9875\u9762\u63D0\u4F9B\u6570\u636E\u7684\uFF1A\\n\\n```js\\nimport axios from 'axios'\\nimport path from 'path'\\n\\nexport default {\\n  plugins: ['react-static-plugin-typescript'],\\t\\t\\t// \u4F7F\u7528 TypeScript\\n  entry: path.join(__dirname, 'src', 'index.tsx'),\\t\\t// \u6307\u5B9A\u5165\u53E3\u6587\u4EF6\\n  getSiteData: () => ({\\t\\t\\t\\t\\t\\t\\t\\t\\t// \u6307\u5B9A SiteData\\n    title: 'React Static',\\n  }),\\n  getRoutes: async () => {\\t\\t\\t\\t\\t\\t\\t\\t// \u5B9A\u4E49\u8DEF\u7531\\n    const { data: posts } = await axios.get(\\t\\t\\t// \u6570\u636E\u51C6\u5907\u9636\u6BB5\\n      'https://jsonplaceholder.typicode.com/posts',\\t\\t// \u901A\u8FC7\u8FD9\u4E2A API \u62C9\u53D6\u6570\u636E\\n    )\\n    return [\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t// \u8FD4\u56DE\u8DEF\u7531\u8868\\n      {\\n        path: '/blog',\\t\\t\\t\\t\\t\\t\\t\\t\\t// \u535A\u5BA2\u5217\u8868\u9875\\n        getData: () => ({\\t\\t\\t\\t\\t\\t\\t\\t// \u63D0\u4F9B\u535A\u5BA2\u5217\u8868\u9875\u7684 RouteData\\n          posts,\\n        }),\\n        children: posts.map(post => ({\\t\\t\\t\\t\\t// \u5B50\u9875\u9762\uFF1A\u5404\u4E2A\u6587\u7AE0\u8BE6\u60C5\u9875\\n          path: `/post/${post.id}`,\\t\\t\\t\\t\\t\\t// \u8DEF\u5F84\\n          component: 'src/containers/Post',\\t\\t\\t\\t// \u6307\u5B9A\u7EC4\u4EF6\\n          getData: () => ({\\t\\t\\t\\t\\t\\t\\t\\t// \u63D0\u4F9B\u6587\u7AE0\u8BE6\u60C5\u9875\u7684 RouteData\\n            post,\\n          }),\\n        })),\\n      },\\n    ]\\n  },\\n}\\n\\n```\\n\\n\u662F\u4E0D\u662F\u975E\u5E38\u7B80\u5355\u76F4\u89C2\uFF01\u5176\u4E2D\uFF1A\\n\\n- \u6570\u636E\u63D0\u4F9B\u662F\u6211\u4EEC\u76F4\u63A5\u5199 js \u4EE3\u7801\u6765\u83B7\u53D6\u7684\\n- \u4F60\u4F1A\u53D1\u73B0\uFF1Asrc/pages/index.tsx\u3001src/pages/about.tsx \u90FD\u6CA1\u518D\u4E0A\u9762\u51FA\u73B0\uFF0C\u8FD9\u662F\u56E0\u4E3A react-static \u4E2D\u6709\u4E00\u4E2A\u7EA6\u5B9A\uFF0Csrc/pages/ \u4E0B\u7684\u9875\u9762(\u9AD8\u9636\u7EC4\u4EF6)\uFF0C\u4F1A\u81EA\u52A8\u4E3A\u4ED6\u4EEC\u914D\u7F6E\u8DEF\u5F84\u3002\u4F46\u662F\u5982\u679C\u4F60\u8981\u5411\u5B83\u4EEC\u63D0\u4F9B\u6570\u636E\u7684\u8BDD\uFF0C\u8FD8\u5F97\u5728\u4E0A\u9762\u6765\u6307\u5B9A\uFF0C\u5982 /blog\u3002\\n\\n## \u6570\u636E\u4ECE\u4F55\u5904\u6765\uFF1F\\n\\n\u5728\u793A\u4F8B\u5DE5\u7A0B\u4E2D\uFF0C\u6570\u636E\u662F\u8C03\u7528 API \u63A5\u53E3\u6765\u83B7\u53D6\u7684\u3002\\n\\n\u6709\u4E00\u70B9\u9700\u8981\u5F04\u6E05\u7684\u662F\uFF0C\u8FD9\u91CC\u4ECE API \u83B7\u53D6\u6570\u636E\u53D1\u751F\u5728\u6784\u5EFA\u65F6\uFF0C\u53EA\u5728\u6784\u5EFA\u65F6\u6267\u884C\u4E00\u6B21\u3002react-static \u4F1A\u62FF\u8FD9\u4E00\u6B21\u83B7\u53D6\u5230\u7684\u6570\u636E\u751F\u6210\u9759\u6001\u7F51\u7AD9\u3002\\n\\n\u8FD9\u4E5F\u5C31\u662F\u8BF4\uFF0C\u5F53\u4E00\u6B21\u6784\u5EFA\u53D1\u5E03\u540E\uFF0C\u5982\u679C API \u6709\u4E86\u66F4\u65B0\uFF0C\u7EBF\u4E0A\u7684\u7F51\u7AD9\u4E0D\u4F1A\u66F4\u65B0\uFF0C\u9664\u975E\u518D\u6267\u884C\u4E00\u6B21\u6784\u5EFA\u8FC7\u7A0B\u3002\u522B\u5FD8\u4E86\u6211\u4EEC\u662F\u9759\u6001\u7F51\u7AD9\uFF01\\n\\n\u80FD\u4E0D\u80FD\u4E0D\u4ECE API \u4E2D\u83B7\u53D6\u5462\uFF1F\u5F53\u7136\u53EF\u4EE5\u3002\\n\\n\u4E0A\u9762\u4EE3\u7801\u4E2D getRoutes \u5C31\u662F\u4E2A node.js \u7684\u65B9\u6CD5\uFF0C\u600E\u4E48\u83B7\u53D6\u6570\u636E\u5B8C\u5168\u7531\u4F60\u7F16\u5199\u7684 js \u4EE3\u7801\u63A7\u5236\u3002\\n\\n\u6211\u4EEC\u5F00\u4E0B\u8111\u6D1E\uFF0C\u53EF\u4EE5\u5982\u4F55\u83B7\u53D6\u6570\u636E\u5462\uFF1F\\n\\n- \u626B\u63CF\u67D0\u4E2A\u6587\u4EF6\u5939\u4E0B\u7684 Markdown (maxiee.github.io \u5C31\u662F\u8FD9\u79CD\u65B9\u6CD5)\\n- \u8BFB\u53D6\u67D0\u4E2A SQLite \u6570\u636E\u5E93\\n- \u8BFB\u53D6 MySQL\u3001MongoDB\\n- \u8BFB\u53D6 OrgMode \u7B14\u8BB0\\n- \u2026\u2026\\n\\n## \u6570\u636E\u7684 json \u4FDD\u5B58\\n\\nreact-static \u91C7\u53D6\u6570\u636E\u4E0E\u6A21\u677F\u5206\u79BB\u7684\u6A21\u5F0F\u3002\\n\\n\u6211\u4EEC\u5728 react-static \u4E2D\u63D0\u4F9B\u6570\u636E\uFF0C\u5728\u6A21\u677F\u4E2D\u901A\u8FC7 withRouteData \u63A5\u6536\u6570\u636E\u3002\\n\\n\u8FD9\u4E9B\u6570\u636E\u5728\u6784\u5EFA\u65F6\u4F1A\u88AB\u4FDD\u5B58\u4E3A json \u6587\u4EF6\u3002\\n\\n\u6211\u4EEC\u4E0B\u9762\u6765\u9A8C\u8BC1\u8FD9\u4E2A\u8FC7\u7A0B\uFF0C\u9996\u5148\u6784\u5EFA\u9879\u76EE\uFF1A\\n\\n```\\nyarn build\\n```\\n\\n\u7ECF\u5386\u4E86 25.02s \u4E4B\u540E\uFF0C\u6211\u5B8C\u6210\u4E86\u6784\u5EFA\u3002\\n\\n\u4F60\u4F1A\u60F3\u4E00\u4E2A\u7A7A\u7684\u5DE5\u7A0B\u4E3A\u4F55\u6784\u5EFA\u9700\u8981\u8FD9\u4E48\u591A\u65F6\u95F4\u5462\uFF1F\u8FD9\u662F\u56E0\u4E3A\u8981\u542F\u52A8 Pyppeteer \u8FDB\u884C DOM snapshot\u3002\\n\\n\u6211\u5728\u5B9E\u8DF5\u4E2D\u53D1\u73B0\uFF0C\u5F53\u6211\u6709\u4E0A\u767E\u7BC7\u6587\u7AE0\u9700\u8981\u9759\u6001\u5316\u7684\u65F6\u5019\uFF0C\u6784\u5EFA\u65F6\u95F4\u4E5F\u4E0D\u8FC7 80.44s\u3002\u5E73\u5747\u4E00\u4E2A\u9875\u9762\u589E\u957F 0.5s\uFF0C\u8FD9\u4E2A\u901F\u5EA6\u662F\u975E\u5E38\u4EE4\u4EBA\u6EE1\u610F\u7684\uFF01\\n\\n\u8BF4\u5230\u8FD9\u6211\u5728\u591A\u8BF4\u4E24\u53E5\uFF0C\u5728\u4F7F\u7528 react-static \u4E4B\u524D\uFF0C\u6211\u72EC\u7ACB\u5F00\u53D1\u4E86\u4E00\u4E2A\u9759\u6001\u7F51\u7AD9\u751F\u6210\u5668\u3002\u4E00\u5F00\u59CB\u7528\u7740\u633A\u597D\uFF0C\u53EF\u5B83\u7684\u81F4\u547D\u7F3A\u9677\u662F\uFF0C\u751F\u6210\u65F6\u95F4\u968F\u7740\u9875\u9762\u6570\u91CF\u6025\u901F\u4E0A\u5347\uFF0C\u540C\u65F6\u7A33\u5B9A\u6027\u4E5F\u4E0B\u964D\uFF0C\u5F00\u59CB\u51FA\u73B0\u6784\u5EFA\u5931\u8D25\u7684\u60C5\u51B5\u3002\\n\\n\u8FD9\u4EF6\u4E8B\u7ED9\u6211\u7684\u7ECF\u9A8C\u5C31\u662F\uFF0C\u6CA1\u6709\u4E24\u628A\u5237\u5B50\u5C31\u4E0D\u8981\u9020\u8F66\u8F6E\uFF0C\u5148\u63D0\u9AD8\u81EA\u5DF1\u7684\u59FF\u52BF\u6C34\u5E73\u3002\u6240\u4EE5\u6211\u73B0\u5728\u4E0D\u81EA\u5DF1\u778E\u6298\u817E\u4E86\uFF0C\u6539\u4E3A\u7FFB\u8BD1\u4F18\u79C0\u6587\u7AE0\uFF0C\u6536\u83B7\u4E0E\u63D0\u9AD8\u66F4\u5927\uFF01\\n\\n\u6784\u5EFA\u5B8C\u6210\u540E\u7684\u9759\u6001\u7AD9\u70B9\u4F4D\u4E8E dist \u76EE\u5F55\u4E0B\uFF1A\\n\\n```\\n\\n\u251C\u2500\u2500 404\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 404.html\\n\u251C\u2500\u2500 about\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 blog\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 post\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 index.html\\n\u251C\u2500\u2500 main.6643724f.js\\n\u251C\u2500\u2500 main.6643724f.js.map\\n\u251C\u2500\u2500 robots.txt\\n\u251C\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 static.4e7b9259.js\\n\u251C\u2500\u2500 static.4e7b9259.js.map\\n\u251C\u2500\u2500 styles.97353e12.css\\n```\\n\\n\u6211\u4EEC\u4E3B\u8981\u6765\u770B `blog/post/` \u4E0B\uFF0C\u4E0A\u9762\u7684\u7ED3\u6784\u4E2D\u6CA1\u6709\u5C55\u5F00\u8FD9\u5757\uFF0C\u6211\u4EEC\u8FDB\u53BB\u540E\u7EE7\u7EED\u770B\uFF1A\\n\\n```\\n.\\n\u251C\u2500\u2500 1\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 10\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 100\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 11\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 12\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 13\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u251C\u2500\u2500 14\\n\u2502\u00A0\u00A0 \u251C\u2500\u2500 index.html\\n\u2502\u00A0\u00A0 \u2514\u2500\u2500 routeInfo.json\\n\u2026\u2026\\n```\\n\\n\u6211\u4EEC\u4F1A\u770B\u5230\u5982\u4E0B\u7ED3\u6784\uFF0C\u5176\u4E2D\uFF1A\\n\\n- \u4EE5\u6570\u5B57\u547D\u540D\u7684\u76EE\u5F55\u81EA\u7136\u60F3\u5230\u5C31\u662F\u6211\u4EEC\u7684 postID\\n- \u6BCF\u4E2A\u76EE\u5F55\u4E0B\u90FD\u5305\u542B\u4E24\u4E2A\u6587\u4EF6\\n    - index.html\uFF1A\u9759\u6001\u5316\u7F51\u9875\uFF0C\u6587\u7AE0\u5185\u5BB9\u88AB\u56FA\u5316\u5728 HTML \u91CC\u9762\u4E86\uFF0C\u5F85\u4F1A\u513F\u6211\u4EEC\u8BE6\u7EC6\u770B\u4E00\u770B\\n    - routeInfo.json\uFF1Astatic.config.js \u4E2D\u4E3A\u6BCF\u4E2A\u5E16\u5B50\u63D0\u4F9B\u7684\u6570\u636E\u88AB\u4FDD\u5B58\u4E3A routeInfo.json\\n\\n### routeInfo.json \u662F\u5E72\u561B\u7684\\n\\n\u6211\u4EEC\u9996\u5148\u4F1A\u6709\u7591\u95EE\uFF0CrouteInfo.json \u662F\u5E72\u561B\u7684\uFF1Findex.html \u4E2D\u628A\u5E16\u5B50\u6570\u636E\u56FA\u5316\u8FDB\u53BB\u4E86\uFF0C\u4E3A\u5565\u5916\u9762\u8FD8\u8981\u5B58\u4E00\u4EFD routeInfo.json \u5462\uFF1F\\n\\n\u8BA9\u6211\u4EEC\u8BBE\u60F3\u4E00\u79CD\u573A\u666F\uFF0C\u4ECE 1 \u53F7\u6587\u7AE0\u8DF3\u8F6C\u5230 2 \u53F7\u6587\u7AE0\uFF0C\u5982\u4F55\u505A\u5462\uFF1F\\n\\n- \u6211\u4EEC\u53EF\u4EE5\u4ECE 1 \u53F7\u7684 index.html \u8DF3\u8F6C\u5230 2 \u53F7\u7684 index.html\\n- \u4F46\u662F\u8FD9\u6837\u4F1A\u628A 2 \u53F7\u7684 index.html\uFF0C\u91CD\u65B0\u4E0B\u8F7D\u4E00\u904D\\n- \u6211\u4EEC\u5DF2\u7ECF\u77E5\u9053\uFF0C1 \u53F7\u4E0E 2 \u53F7\u7684 index.html \u9664\u4E86\u5185\u5BB9\u533A\u5916\u90FD\u662F\u4E00\u6837\u7684\uFF0C\u5982\u679C\u91CD\u65B0\u4E0B\u8F7D\u4E00\u904D\uFF0C\u9664\u4E86\u5185\u5BB9\u5916\u7684\u6570\u636E\u4E0B\u6765\u90FD\u662F\u6D6A\u8D39\\n- \u80FD\u4E0D\u80FD\u53EA\u4E0B\u8F7D\u5185\u5BB9\u5462\uFF1F\\n- react-static \u8BF4\u53EF\u4EE5\uFF0C\u53EA\u9700\u8981\u4E0B\u8F7D 2 \u53F7\u7684 routeInfo.json \u5C31\u53EF\u4EE5\u4E86\\n\\n\u6240\u4EE5\u8BF4\uFF0Creact-static \u6784\u5EFA\u51FA\u6765\u7684\u7AD9\u70B9\u901F\u5EA6\u975E\u5E38\u975E\u5E38\u5FEB\uFF01\u26A1\uFE0F\u26A1\uFE0F\u800C routeInfo.json \u53EA\u662F\u5176\u9488\u5BF9\u901F\u5EA6\u7684\u4F18\u5316\u4E4B\u4E00\uFF01\\n\\n\u6211\u4EEC\u4EE5 1 \u53F7\u535A\u5BA2\u4E3A\u4F8B\uFF0C\u770B\u770B\u4ED6\u7684 routeInfo.json\uFF1A\\n\\n```json\\n{\\n    \\\"template\\\": \\\"../src/containers/Post\\\",\\n    \\\"sharedHashesByProp\\\": {},\\n    \\\"data\\\": {\\n        \\\"post\\\": {\\n            \\\"userId\\\": 1,\\n            \\\"id\\\": 1,\\n            \\\"title\\\": \\\"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\\\",\\n            \\\"body\\\": \\\"quia et suscipit\\\\nsuscipit recusandae consequuntur expedita et cum\\\\nreprehenderit molestiae ut ut quas totam\\\\nnostrum rerum est autem sunt rem eveniet architecto\\\"\\n        }\\n    },\\n    \\\"path\\\": \\\"blog/post/1\\\"\\n}\\n```\\n\\n\u53EF\u4EE5\u770B\u51FA\uFF1A\\n\\n- \u8FD9\u5C31\u662F\u6211\u4EEC\u5728 static.config.js \u4E2D\u63D0\u4F9B\u7684\u6570\u636E\uFF0C\u9644\u5E26\u4E86\u4E00\u4E9B meta \u4FE1\u606F\uFF0C\u6BD4\u5982\u6307\u5B9A\u6A21\u677F\u8DEF\u5F84\\n\\n###  dist/blog/post/1/index.html\\n\\n\u4E0B\u9762\u6211\u4EEC\u518D\u6765\u770B\u770B 1 \u53F7\u535A\u5BA2\u7684\u9759\u6001 HTML\uFF1A\\n\\n```html\\n<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n\\n<head>\\n    <link rel=\\\"preload\\\" as=\\\"script\\\" href=\\\"/templates/src-containers-Post.634b5ebb.js\\\" />\\n    <link rel=\\\"preload\\\" as=\\\"script\\\" href=\\\"/templates/styles.97353e12.js\\\" />\\n    <link rel=\\\"preload\\\" as=\\\"script\\\" href=\\\"/templates/vendors~main.9dfd262a.js\\\" />\\n    <link rel=\\\"preload\\\" as=\\\"script\\\" href=\\\"/main.6643724f.js\\\" />\\n    <link rel=\\\"preload\\\" as=\\\"style\\\" href=\\\"/styles.97353e12.css\\\" />\\n    <link rel=\\\"stylesheet\\\" href=\\\"/styles.97353e12.css\\\" />\\n    <meta charSet=\\\"UTF-8\\\" />\\n    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no\\\" />\\n</head>\\n\\n<body>\\n    <div id=\\\"root\\\">\\n        <div style=\\\"outline:none\\\" tabindex=\\\"-1\\\" role=\\\"group\\\">\\n            <nav><a href=\\\"/\\\">Home</a><a href=\\\"/about\\\">About</a><a href=\\\"/blog\\\">Blog</a></nav>\\n            <div class=\\\"content\\\">\\n                <div style=\\\"border:1px solid red\\\">\\n                    <div><a href=\\\"/blog/\\\">&lt;\\n                            \u003C!-- --> Back</a><br />\\n                        <h3>sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h3>\\n                        <p>quia et suscipit\\n                            suscipit recusandae consequuntur expedita et cum\\n                            reprehenderit molestiae ut ut quas totam\\n                            nostrum rerum est autem sunt rem eveniet architecto</p>\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n    </div>\\n    <script type=\\\"text/javascript\\\">\\n        window.__routeInfo = { \\\"template\\\": \\\"../src/containers/Post\\\", \\\"sharedHashesByProp\\\": {}, \\\"data\\\": { \\\"post\\\": { \\\"userId\\\": 1, \\\"id\\\": 1, \\\"title\\\": \\\"sunt aut facere repellat provident occaecati excepturi optio reprehenderit\\\", \\\"body\\\": \\\"quia et suscipit\\\\nsuscipit recusandae consequuntur expedita et cum\\\\nreprehenderit molestiae ut ut quas totam\\\\nnostrum rerum est autem sunt rem eveniet architecto\\\" } }, \\\"path\\\": \\\"blog/post/1\\\", \\\"siteData\\\": { \\\"title\\\": \\\"React Static\\\" } };<\/script>\\n    <script defer=\\\"\\\" type=\\\"text/javascript\\\" src=\\\"/templates/src-containers-Post.634b5ebb.js\\\"><\/script>\\n    <script defer=\\\"\\\" type=\\\"text/javascript\\\" src=\\\"/templates/styles.97353e12.js\\\"><\/script>\\n    <script defer=\\\"\\\" type=\\\"text/javascript\\\" src=\\\"/templates/vendors~main.9dfd262a.js\\\"><\/script>\\n    <script defer=\\\"\\\" type=\\\"text/javascript\\\" src=\\\"/main.6643724f.js\\\"><\/script>\\n</body>\\n\\n</html>\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- head \u53BB\u52A0\u8F7D\u4E86\u4E00\u5806 js\uFF0C\u5E26\u6709 preload \u5C5E\u6027\uFF0C\u662F\u9884\u52A0\u8F7D\u7684 js\\n- \u5728 body \u672B\u5C3E\u4E5F\u52A0\u8F7D\u4E00\u5806 js\\n- \u8FD9\u4E9B js \u6211\u4EEC\u5148\u4E0D\u53BB\u7BA1\u5B83\\n- \u4E2D\u95F4\u7684 body \u90E8\u5206\u662F\u5DF2\u7ECF\u56FA\u5316\u7684\u6587\u7AE0\uFF0C\u8FD9\u5C31\u610F\u5473\u7740\uFF0C\u5C31\u7B97\u8FD9\u4E9B js \u90FD\u6CA1\u52A0\u8F7D\u5B8C\uFF0C\u53EA\u8981 HTML \u4E0B\u8F7D\u4E0B\u6765\uFF0C\u6587\u7AE0\u5C31\u5DF2\u7ECF\u5C55\u793A\u51FA\u6765\u4E86\\n- \u6211\u4EEC\u4F1A\u53D1\u73B0\u6709\u4E00\u4E2A\u5947\u602A\u7684 `window.__routeInfo` \u811A\u672C\uFF0C\u8FD9\u91CC\u9762\u7684\u5185\u5BB9\u4E00\u770B\u5C31\u662F\u4E0A\u4E00\u8282\u7684 routeInfo.json\uFF0C\u8FD9\u662F\u600E\u4E48\u56DE\u4E8B\u5462\uFF1F\\n- \u539F\u6765\uFF0CHTML \u4E0B\u8F7D\u4E0B\u6765\uFF0C\u6587\u7AE0\u5C55\u793A\u51FA\u6765\u540E\u5E76\u6CA1\u6709\u7ED3\u675F\u3002js \u8FD8\u5728\u7EE7\u7EED\u4E0B\u8F7D\u7740\uFF0C\u4E00\u65E6\u4E0B\u8F7D\u5B8C\u6210\uFF0C\u4F1A\u8FD0\u884C React \u6846\u67B6\uFF0C\u8FD0\u884C\u4F60\u7684 APP\uFF0C\u8FD0\u884C\u4F60\u7684 1 \u53F7\u6587\u7AE0\u7684\u7EC4\u4EF6\u4EE3\u7801\uFF0C\u4F20\u5165 `window.__routeInfo`\uFF0C\u53C8\u628A\u4F60\u8FD9\u7BC7\u6587\u7AE0\u7684\u4EE3\u7801\u91CD\u65B0\u8DD1\u4E86\u4E00\u904D\uFF0C\u5E76\u518D\u6B21\u8F93\u51FA\u5230\u7F51\u9875\u4E0A\\n- \u4F46\u662F\u7531\u4E8E\u524D\u540E\u9875\u9762\u7684 DOM \u662F\u5B8C\u5168\u4E00\u6837\u7684\uFF0C\u7528\u6237\u5BF9\u6B64\u662F\u65E0\u611F\u77E5\u7684(\u80CC\u540E\u7ADF\u7136\u5E72\u4E86\u8FD9\u79CD\u4E8B\u60C5\uFF01)\\n\\n\u4E3A\u4EC0\u4E48\u8981\u518D\u8DD1\u4E00\u6B21\u5462\uFF1F\\n\\n\u8BF7\u53C2\u89C1\u6211 [react-static \u9759\u6001\u7F51\u7AD9\u642D\u5EFA\uFF08\u4E00\uFF09\uFF1A\u4EC0\u4E48\u662F React \u9759\u6001\u7F51\u7AD9\uFF1F](https://maxiee.github.io/post/ReactStatic1.md/) \u4E2D\u7684\u6700\u540E\u4E00\u8282 **One more thing**\u3002\\n\\n\u4E00\u53E5\u8BDD\u6982\u62EC\u5C31\u662F\uFF1A**\u5C31\u662F\u8BA9\u7528\u6237\u7528\u8BBF\u95EE\u9759\u6001\u7F51\u7AD9\u7684\u901F\u5EA6\uFF0C\u5F97\u5230 SPA \u7684\u4E30\u5BCC\u4F53\u9A8C\u3002**\\n\\n## \u4E4B\u540E\u5462\\n\\n\u793A\u4F8B\u5DE5\u7A0B\u6211\u4EEC\u5DF2\u7ECF\u5206\u6790\u5730\u5341\u5206\u900F\u5F7B\u4E86\u3002\u4E4B\u540E\u505A\u4EC0\u4E48\u5462\uFF1F\\n\\n\u4E4B\u540E\u5C31\u662F\u8BE5 Getting your hands dirty \u4E86\uFF1A\\n\\n- \u6DFB\u52A0\u6216\u8005\u81EA\u5DF1\u7F16\u5199\u4E00\u4E2A\u597D\u770B\u7684 UI \u5E93\\n- \u4FEE\u6539\u5404\u4E2A\u9875\u9762\u7684\u6A21\u677F\\n- \u9009\u62E9\u4E00\u79CD\u9002\u5408\u81EA\u5DF1\u5DE5\u4F5C\u6D41\u7684\u6570\u636E\u63D0\u4F9B\u65B9\u5F0F\\n- \u5F00\u59CB\u7F16\u5199\u81EA\u5DF1\u7684\u535A\u5BA2\u5427\uFF01\\n\\n## \u7ED3\u8BBA\\n\\n\u7ECF\u8FC7\u8FD9\u4E09\u7BC7\u7684\u7CFB\u5217\u6587\u7AE0\uFF0C\u6211\u4EEC\u5DF2\u7ECF\u660E\u767D\u4E86\u4EC0\u4E48\u662F\u9759\u6001\u7F51\u7AD9\uFF0C\u4EC0\u4E48\u662F react-static\uFF0C\u5982\u4F55\u521B\u5EFA\u9759\u6001\u7AD9\u70B9\uFF0C\u5C24\u5176\u662F\u9759\u6001\u535A\u5BA2\u3002\\n\\n\u4ECE\u4E0B\u4E00\u7BC7\u5F00\u59CB\uFF0C\u6211\u5C06\u4ECB\u7ECD\u5404\u79CD\u7528 react-static \u521B\u5EFA\u7F51\u7AD9\u7684\u5B9E\u7528\u6280\u5DE7\u3002\u6B22\u8FCE\u6301\u7EED\u5173\u6CE8\uFF01\"},\"path\":\"post/ReactStatic3md\",\"sharedData\":{},\"siteData\":{\"title\":\"Maxiee Blog\"}}");</script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/styles.8980412b.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/main.ecbb90a8.js"></script></body></html>

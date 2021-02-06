@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="React Static"/><title data-react-helmet="true">React Native 代码阅读（十一）：react-native link 的实现原理(Android) | Maxiee Blog</title><meta data-react-helmet="true" charSet="UTF-8"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/styles.8980412b.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"/><link rel="preload" as="script" href="https://maxiee.github.io/main.ecbb90a8.js"/><link rel="preload" as="style" href="https://maxiee.github.io/styles.8980412b.css"/><link rel="stylesheet" href="https://maxiee.github.io/styles.8980412b.css"/><script data-react-helmet="true" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"/></head><body><div id="root"><div style="outline:none" tabindex="-1" role="group"><div><div style="display:flex;flex-direction:row;justify-content:space-between;margin-left:26px;margin-right:26px;height:72px"><div style="display:flex;flex-direction:row;justify-content:center;align-items:center"><img src="data:image/jpeg;base64,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" class="ui mini circular centered image"/><div style="margin-left:12px;font-size:18px"><a href="https://maxiee.github.io/">Maxiee Blog</a></div></div><div style="display:flex;flex-direction:row;align-items:center"><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/post">博客</a></div><div style="margin-left:26px" role="listbox" aria-expanded="false" class="ui dropdown" tabindex="0"><div class="text" role="alert" aria-live="polite">作品</div><i aria-hidden="true" class="dropdown icon"></i><div class="menu transition"><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/RayInfomd">RayInfo</a><div style="color:#CCCCCC">资讯阅读 App</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/MaxieeRNLabmd">MaxieeRNLab</a><div style="color:#CCCCCC">React Native 综合示例 APP</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/JiuShengmd">韭生</a><div style="color:#CCCCCC">roguelike 人生模拟器游戏</div></div></div></div></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/gallery">设计</a></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/about">关于</a></div></div></div><div style="outline:none" tabindex="-1" role="group"><div class="ui grid"><div class="row"><div style="margin-left:20px;margin-right:20px" class="column"><h1 class="ui header">React Native 代码阅读（十一）：react-native link 的实现原理(Android)</h1><p style="margin-bottom:20px;color:gray">2019-03-22</p><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div><h2>前言</h2>
+<p>react-native link 是一个我们在开发中经常用到的命令，它的作用是将第三方库中的 Native Modules 引入 Native 工程。在 Android 中，引入 Native 需要修改 Gradle、Java 代码，这是如何实现的呢？</p>
+<p>另一点值得一提的是，React Native cli 已经从官方源中迁移出来了，成为一个社区维护的项目 <a href="https://github.com/react-native-community/react-native-cli">react-native-cli</a>。拥抱社区是 React Native 今年的一项重点工作，未来 React Native 生态会变得更好玩。</p>
+<h2>React Native Package Manager</h2>
+<h3>介绍</h3>
+<p>React Native 的第三方库虽然使用 npm 分发并使用 npm/yarn 进行安装，但是对于带有 Native Modules 的模块细心的人可能会注意到，需要使用 react-native link 进行连接。</p>
+<p>其实，React Native 是由自己的包管理器的，名为 React Native Package Manager（rnpm），link 操作是 rnpm 的一部分。</p>
+<p>rnpm 曾经是一个<a href="https://github.com/rnpm/rnpm">独立项目</a>，现在被整合进入了 React Native Core。</p>
+<p>因此，想要弄清 link 的操作，我们首先要了解 React Native Package Manager。</p>
+<h3>背景</h3>
+<p>React Native 包与普通的前端包不同之处在于，React Native 包通常还包括 Android、iOS 原生代码。如何才能将原生代码成功连接到原生工程内呢？</p>
+<p>rnpm 就是来解决这个问题的</p>
+<h3>package.json.rnpm</h3>
+<p>rnpm 对 package.json 进行了扩充。开发者在开发 rnpm 包时，在 package.json 通过添加 rnpm 字段来控制 rnpm 的行为。其中包含几个控制项。</p>
+<h4>commands</h4>
+<p>用于添加在连接前后执行的命令：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">&quot;rnpm&quot;: {
+  &quot;commands&quot;: {
+    &quot;prelink&quot;: &quot;./bin/requestGAToken&quot;,
+    &quot;postlink&quot;: &quot;./bin/linkingSucceeded&quot;
+  }
+}
+</code></pre></pre>
+<h4>assets</h4>
+<p>用于指定需要连接进入工程的资源目录：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">...
+&quot;rnpm&quot;: {
+  &quot;assets&quot;: [&quot;Fonts&quot;]
+},
+...
+</code></pre></pre>
+<h3>如何解析 rnpm 资源</h3>
+<p>package.json 的 rnpm 字段是如何被解析的呢？</p>
+<p>让我们回到 react-native-cli 的代码，它位于 packages/cli/src/tools/getPackageConfiguration.js：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">/**
+ * Returns configuration of the CLI from `package.json`.
+ */
+export default function getPackageConfiguration(
+  folder: string,
+): PackageConfigurationT {
+  return require(path.join(folder, &#x27;./package.json&#x27;)).rnpm || {};
+}
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>require 像导入普通的 json 一样，将 package.json 导入</li>
+<li>之后访问它的 rnpm 字段</li>
+</ul>
+<p>我们直接看它的返回类型 PackageConfigurationT：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">/**
+ * Configuration of the CLI as set by a package in the package.json
+ */
+export type PackageConfigurationT = {
+  assets?: string[],
+  commands?: {[name: string]: string},
+  params?: InquirerPromptT[],
+  android: AndroidConfigParamsT,
+  ios: IOSConfigParamsT,
+};
+
+export type InquirerPromptT = any;
+
+export type AndroidConfigParamsT = {};
+</code></pre></pre>
+<p>这与文档上的说明是一致的。</p>
+<h2>第三方模块结构</h2>
+<p>在我们深入 link.js 代码之前，我们先来看下一个包含 Native Modules 的第三方库的结构。</p>
+<p>第一个包含 Native Modules 的第三方库包含以下几个部分：</p>
+<ul>
+<li>Android 原生代码：Android 平台的 Native Modules</li>
+<li>iOS 原生代码：iOS 平台的 Native Modules</li>
+<li>js 代码：对不同平台的 Native Modules 进行统一封装</li>
+</ul>
+<p>需要注意的是，这种 React Native 第三方库使用 npm 进行分发，因此位于工程的 <code style="background:#f5f7ff;padding:2px">node_modules</code> 目录下。</p>
+<p>这对于习惯原生开发的同学来说是一个不同的地方。</p>
+<p>下面我们以 react-native-intent-launcher 这个第三方库为例，它位于 node_modules/react-native-intent-launcher 下。目录结构如下：</p>
+<pre><code style="background:#f5f7ff;padding:2px">node_modules/react-native-intent-launcher
+├── IntentConstant.js
+├── LICENSE
+├── README.md
+├── android
+│   ├── android.iml
+│   ├── build
+│   ├── build.gradle
+│   ├── gradle
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── local.properties
+│   └── src
+├── index.js
+└── package.json
+</code></pre>
+<p>从中可以看出：</p>
+<ul>
+<li>它是一个前端工程，有 <code style="background:#f5f7ff;padding:2px">package.json</code> 文件</li>
+<li>android 目录是 Android 的 Native Modules，它被封装为一个 Android Module 工程</li>
+<li>因为这个项目是对 Android Intent 特性的封装，因此只有 Android 平台，没有 iOS 平台</li>
+<li>其中 android 目录是需要被 link 进主工程的 android 目录下的</li>
+</ul>
+<p>浏览这个项目后发现：</p>
+<ul>
+<li>package.json：是一个普通的前端工程，没有特别的与 link 相关的信息，里面有一个 main 字段，指向 index.js</li>
+<li>index.js：它是前面提到的 js 代码入口，提供 JS 侧的 Native Module 接口</li>
+<li>android/build.gradle：一个普通的 Android Library Modules，其中对 React Native 的依赖没有指定固定的版本号</li>
+<li>题外话：不太好的一点是发现它依赖了 appcompat-v7:23.0.1，这个依赖是多余的，最好去掉</li>
+</ul>
+<p>通过对这个工程的分析，我们发现它并没有对 link 进行特殊的配置。</p>
+<p>因此，解析工程、找出 Native Modules 的任务都落在 link 命令里面了。</p>
+<p>有了这些背景知识，下面我们进入 link 内部一探究竟。</p>
+<h2>Android Platform 工具集</h2>
+<p>在本文中，我们的核心问题是在 Android 中，引入 Native 需要修改 Gradle、Java 代码，这是如何实现的呢？</p>
+<p>这个问题的答案就在 packages/cli/src/commands/link/android 这个目录下。</p>
+<p>它提供了一系列函数，用于注册原生模块、解注册原生模块、拷贝资源等待。</p>
+<p>下面我们逐个来看：</p>
+<h3>注册原生模块</h3>
+<p>这个操作位于 packages/cli/src/commands/link/android/registerNativeModule.js 中：它的代码如下：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * @format
+ */
+
+import applyPatch from &#x27;./patches/applyPatch&#x27;;
+import makeStringsPatch from &#x27;./patches/makeStringsPatch&#x27;;
+import makeSettingsPatch from &#x27;./patches/makeSettingsPatch&#x27;;
+import makeBuildPatch from &#x27;./patches/makeBuildPatch&#x27;;
+import makeImportPatch from &#x27;./patches/makeImportPatch&#x27;;
+import makePackagePatch from &#x27;./patches/makePackagePatch&#x27;;
+
+export default function registerNativeAndroidModule(
+  name,
+  androidConfig,
+  params,
+  projectConfig,
+) {
+  // 生成导入 Java 依赖的 patch
+  const buildPatch = makeBuildPatch(name);
+
+  // applyPatch 进行正则替换
+  // 在 settings.gradle 中通过相对路径导入 node_modules 下的库的 android 目录
+  applyPatch(
+    projectConfig.settingsGradlePath,
+    makeSettingsPatch(name, androidConfig, projectConfig),
+  );
+
+  // 在 app/build.gradle 下加入 Java Module 依赖
+  applyPatch(projectConfig.buildGradlePath, buildPatch);
+  // 向 strings.xml 中追加 string 资源
+  applyPatch(projectConfig.stringsPath, makeStringsPatch(params, name));
+
+  // 向注册 MainReactPackage 的地方插入第三方库的 Module
+  applyPatch(
+    projectConfig.mainFilePath,
+    makePackagePatch(androidConfig.packageInstance, params, name),
+  );
+
+  // 向注册 MainReactPackage 的地方加上 Java 类的 import
+  applyPatch(
+    projectConfig.mainFilePath,
+    makeImportPatch(androidConfig.packageImportPath),
+  );
+}
+</code></pre></pre>
+<p>至此我们可以看出：</p>
+<ul>
+<li>核心原理是通过正则匹配进行内容替换</li>
+<li>即通过 Patch 的方法，在 Andorid 工程的各处打补丁</li>
+</ul>
+<h3>感悟</h3>
+<p>link 中最神秘的部分被揭开了，感觉没有想象中那么美丽……没想到是靠暴力正则替换打 patch 实现的，有些失望。但是它确实能工作，而且也工作地很稳定。</p>
+<p>可能是 link 这个命令过于神奇(自动插入 gradle 依赖、自动插入 Java 代码)，因此期望过大。也确实，这么一个神奇的功能总不能是通过人工智能来实现的吧 2333</p>
+<p>这件事情给我的感悟是：</p>
+<ul>
+<li>基础的技术同样能做出很美妙的事情</li>
+<li>一个可靠运行的、实现不怎么高超的厉害功能远胜于一个实现高超但却跑不起来的功能</li>
+<li>有好点子的时候直奔目标而去，用直接的方法实现它，这就是最好的方法</li>
+</ul>
+<p>这不就是 KISS 思想吗？！通过这次代码分析加深了我的认识。</p>
+<h3>资源拷贝</h3>
+<p>资源拷贝就要简单多了 packages/cli/src/commands/link/android/copyAssets.js：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">/**
+ * Copies each file from an array of assets provided to targetPath directory
+ *
+ * For now, the only types of files that are handled are:
+ * - Fonts (otf, ttf) - copied to targetPath/fonts under original name
+ */
+export default function copyAssetsAndroid(
+  files: Array&lt;string&gt;,
+  project: {assetsPath: string},
+) {
+  const assets = groupFilesByType(files);
+
+  logger.debug(`Assets path: ${project.assetsPath}`);
+  (assets.font || []).forEach(asset =&gt; {
+    const fontsDir = path.join(project.assetsPath, &#x27;fonts&#x27;);
+    logger.debug(`Copying asset ${asset}`);
+    // @todo: replace with fs.mkdirSync(path, {recursive}) + fs.copyFileSync
+    // and get rid of fs-extra once we move to Node 10
+    fs.copySync(asset, path.join(fontsDir, path.basename(asset)));
+  });
+}
+</code></pre></pre>
+<p>从中可以看出，它现在只支持对字体资源的拷贝。</p>
+<h2>link 命令</h2>
+<h3>入口</h3>
+<p>link 命令的入口在 packages/cli/src/commands/link/link.js。</p>
+<p>我们先来看这个入口对外导出了什么：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">export default {
+  func: link,
+  description: &#x27;scope link command to certain platforms (comma-separated)&#x27;,
+  name: &#x27;link [packageName]&#x27;,
+  options: [
+    {
+      command: &#x27;--platforms [list]&#x27;,
+      description:
+        &#x27;If you want to link dependencies only for specific platforms&#x27;,
+      parse: (val: string) =&gt; val.toLowerCase().split(&#x27;,&#x27;),
+    },
+  ],
+};
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>包含有这个命令的使用说明</li>
+<li>负责干活的函数是 link</li>
+</ul>
+<p>下面我们就来详细看 link 函数。</p>
+<h3>link 函数</h3>
+<p>link 函数的签名如下：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">/**
+ * Updates project and links all dependencies to it.
+ *
+ * @param args If optional argument [packageName] is provided,
+ *             only that package is processed.
+ */
+function link([rawPackageName]: Array&lt;string&gt;, ctx: ContextT, opts: FlagsType) {
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>
+<p>rawPackageName 需要连接的模块名称，可以不填</p>
+</li>
+<li>
+<p>opts 配置选项</p>
+</li>
+</ul>
+<p>它将 link 操作拆分为以下几个步骤：</p>
+<ol>
+<li>模块解析</li>
+<li>prelink</li>
+<li>linkDependency</li>
+<li>postlink</li>
+<li>linkAssets</li>
+</ol>
+<p>原来还有资源文件也会一同链接进入主工程。</p>
+<p>我们在前面已经分析过了模块解析，以及 Android Platform 工具集中的核心操作。</p>
+<p>link 命令在这里只是进行了目录解析，和将这些过程串联起来，这些都是非核心的工作，因此不再赘述。</p>
+<h2>结论</h2>
+<p>在本文中，我们以 react-native link 命令为起点，通过深入挖掘，了解到原来 React Native 中还有 React Native Package Manager 项目，同时也分析了 react-native link 的实现原理，打开了它的神秘面纱。</p></div><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div></div></div></div></div></div></div></div><script type="text/javascript">
+    window.__routeInfo = JSON.parse("{\"template\":\"/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post\",\"sharedHashesByProp\":{},\"data\":{\"post\":{\"name\":\"React Native \u4EE3\u7801\u9605\u8BFB\uFF08\u5341\u4E00\uFF09\uFF1Areact-native link \u7684\u5B9E\u73B0\u539F\u7406(Android)\",\"desc\":\"\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u4EE5 react-native link \u547D\u4EE4\u4E3A\u8D77\u70B9\uFF0C\u901A\u8FC7\u6DF1\u5165\u6316\u6398\uFF0C\u4E86\u89E3\u5230\u539F\u6765 React Native \u4E2D\u8FD8\u6709 React Native Package Manager \u9879\u76EE\uFF0C\u540C\u65F6\u4E5F\u5206\u6790\u4E86 react-native link \u7684\u5B9E\u73B0\u539F\u7406\uFF0C\u6253\u5F00\u4E86\u5B83\u7684\u795E\u79D8\u9762\u7EB1\u3002\",\"type\":\"md\",\"link\":\"ReactNativeCode11md\",\"create\":\"2019-03-22\",\"filename\":\"ReactNativeCode11.md\"},\"content\":\"## \u524D\u8A00\\n\\nreact-native link \u662F\u4E00\u4E2A\u6211\u4EEC\u5728\u5F00\u53D1\u4E2D\u7ECF\u5E38\u7528\u5230\u7684\u547D\u4EE4\uFF0C\u5B83\u7684\u4F5C\u7528\u662F\u5C06\u7B2C\u4E09\u65B9\u5E93\u4E2D\u7684 Native Modules \u5F15\u5165 Native \u5DE5\u7A0B\u3002\u5728 Android \u4E2D\uFF0C\u5F15\u5165 Native \u9700\u8981\u4FEE\u6539 Gradle\u3001Java \u4EE3\u7801\uFF0C\u8FD9\u662F\u5982\u4F55\u5B9E\u73B0\u7684\u5462\uFF1F\\n\\n\u53E6\u4E00\u70B9\u503C\u5F97\u4E00\u63D0\u7684\u662F\uFF0CReact Native cli \u5DF2\u7ECF\u4ECE\u5B98\u65B9\u6E90\u4E2D\u8FC1\u79FB\u51FA\u6765\u4E86\uFF0C\u6210\u4E3A\u4E00\u4E2A\u793E\u533A\u7EF4\u62A4\u7684\u9879\u76EE [react-native-cli](https://github.com/react-native-community/react-native-cli)\u3002\u62E5\u62B1\u793E\u533A\u662F React Native \u4ECA\u5E74\u7684\u4E00\u9879\u91CD\u70B9\u5DE5\u4F5C\uFF0C\u672A\u6765 React Native \u751F\u6001\u4F1A\u53D8\u5F97\u66F4\u597D\u73A9\u3002\\n\\n## React Native Package Manager\\n\\n### \u4ECB\u7ECD\\n\\nReact Native \u7684\u7B2C\u4E09\u65B9\u5E93\u867D\u7136\u4F7F\u7528 npm \u5206\u53D1\u5E76\u4F7F\u7528 npm/yarn \u8FDB\u884C\u5B89\u88C5\uFF0C\u4F46\u662F\u5BF9\u4E8E\u5E26\u6709 Native Modules \u7684\u6A21\u5757\u7EC6\u5FC3\u7684\u4EBA\u53EF\u80FD\u4F1A\u6CE8\u610F\u5230\uFF0C\u9700\u8981\u4F7F\u7528 react-native link \u8FDB\u884C\u8FDE\u63A5\u3002\\n\\n\u5176\u5B9E\uFF0CReact Native \u662F\u7531\u81EA\u5DF1\u7684\u5305\u7BA1\u7406\u5668\u7684\uFF0C\u540D\u4E3A React Native Package Manager\uFF08rnpm\uFF09\uFF0Clink \u64CD\u4F5C\u662F rnpm \u7684\u4E00\u90E8\u5206\u3002\\n\\nrnpm \u66FE\u7ECF\u662F\u4E00\u4E2A[\u72EC\u7ACB\u9879\u76EE](https://github.com/rnpm/rnpm)\uFF0C\u73B0\u5728\u88AB\u6574\u5408\u8FDB\u5165\u4E86 React Native Core\u3002\\n\\n\u56E0\u6B64\uFF0C\u60F3\u8981\u5F04\u6E05 link \u7684\u64CD\u4F5C\uFF0C\u6211\u4EEC\u9996\u5148\u8981\u4E86\u89E3 React Native Package Manager\u3002\\n\\n### \u80CC\u666F\\n\\nReact Native \u5305\u4E0E\u666E\u901A\u7684\u524D\u7AEF\u5305\u4E0D\u540C\u4E4B\u5904\u5728\u4E8E\uFF0CReact Native \u5305\u901A\u5E38\u8FD8\u5305\u62EC Android\u3001iOS \u539F\u751F\u4EE3\u7801\u3002\u5982\u4F55\u624D\u80FD\u5C06\u539F\u751F\u4EE3\u7801\u6210\u529F\u8FDE\u63A5\u5230\u539F\u751F\u5DE5\u7A0B\u5185\u5462\uFF1F\\n\\nrnpm \u5C31\u662F\u6765\u89E3\u51B3\u8FD9\u4E2A\u95EE\u9898\u7684\\n\\n### package.json.rnpm\\n\\nrnpm \u5BF9 package.json \u8FDB\u884C\u4E86\u6269\u5145\u3002\u5F00\u53D1\u8005\u5728\u5F00\u53D1 rnpm \u5305\u65F6\uFF0C\u5728 package.json \u901A\u8FC7\u6DFB\u52A0 rnpm \u5B57\u6BB5\u6765\u63A7\u5236 rnpm \u7684\u884C\u4E3A\u3002\u5176\u4E2D\u5305\u542B\u51E0\u4E2A\u63A7\u5236\u9879\u3002\\n\\n#### commands\\n\\n\u7528\u4E8E\u6DFB\u52A0\u5728\u8FDE\u63A5\u524D\u540E\u6267\u884C\u7684\u547D\u4EE4\uFF1A\\n\\n```json\\n\\\"rnpm\\\": {\\n  \\\"commands\\\": {\\n    \\\"prelink\\\": \\\"./bin/requestGAToken\\\",\\n    \\\"postlink\\\": \\\"./bin/linkingSucceeded\\\"\\n  }\\n}\\n```\\n\\n#### assets\\n\\n\u7528\u4E8E\u6307\u5B9A\u9700\u8981\u8FDE\u63A5\u8FDB\u5165\u5DE5\u7A0B\u7684\u8D44\u6E90\u76EE\u5F55\uFF1A\\n\\n```json\\n...\\n\\\"rnpm\\\": {\\n  \\\"assets\\\": [\\\"Fonts\\\"]\\n},\\n...\\n```\\n\\n### \u5982\u4F55\u89E3\u6790 rnpm \u8D44\u6E90\\n\\npackage.json \u7684 rnpm \u5B57\u6BB5\u662F\u5982\u4F55\u88AB\u89E3\u6790\u7684\u5462\uFF1F\\n\\n\u8BA9\u6211\u4EEC\u56DE\u5230 react-native-cli \u7684\u4EE3\u7801\uFF0C\u5B83\u4F4D\u4E8E packages/cli/src/tools/getPackageConfiguration.js\uFF1A\\n\\n```js\\n/**\\n * Returns configuration of the CLI from `package.json`.\\n */\\nexport default function getPackageConfiguration(\\n  folder: string,\\n): PackageConfigurationT {\\n  return require(path.join(folder, './package.json')).rnpm || {};\\n}\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- require \u50CF\u5BFC\u5165\u666E\u901A\u7684 json \u4E00\u6837\uFF0C\u5C06 package.json \u5BFC\u5165\\n- \u4E4B\u540E\u8BBF\u95EE\u5B83\u7684 rnpm \u5B57\u6BB5\\n\\n\u6211\u4EEC\u76F4\u63A5\u770B\u5B83\u7684\u8FD4\u56DE\u7C7B\u578B PackageConfigurationT\uFF1A\\n\\n```js\\n/**\\n * Configuration of the CLI as set by a package in the package.json\\n */\\nexport type PackageConfigurationT = {\\n  assets?: string[],\\n  commands?: {[name: string]: string},\\n  params?: InquirerPromptT[],\\n  android: AndroidConfigParamsT,\\n  ios: IOSConfigParamsT,\\n};\\n\\nexport type InquirerPromptT = any;\\n\\nexport type AndroidConfigParamsT = {};\\n```\\n\\n\u8FD9\u4E0E\u6587\u6863\u4E0A\u7684\u8BF4\u660E\u662F\u4E00\u81F4\u7684\u3002\\n\\n## \u7B2C\u4E09\u65B9\u6A21\u5757\u7ED3\u6784\\n\\n\u5728\u6211\u4EEC\u6DF1\u5165 link.js \u4EE3\u7801\u4E4B\u524D\uFF0C\u6211\u4EEC\u5148\u6765\u770B\u4E0B\u4E00\u4E2A\u5305\u542B Native Modules \u7684\u7B2C\u4E09\u65B9\u5E93\u7684\u7ED3\u6784\u3002\\n\\n\u7B2C\u4E00\u4E2A\u5305\u542B Native Modules \u7684\u7B2C\u4E09\u65B9\u5E93\u5305\u542B\u4EE5\u4E0B\u51E0\u4E2A\u90E8\u5206\uFF1A\\n\\n- Android \u539F\u751F\u4EE3\u7801\uFF1AAndroid \u5E73\u53F0\u7684 Native Modules\\n- iOS \u539F\u751F\u4EE3\u7801\uFF1AiOS \u5E73\u53F0\u7684 Native Modules\\n- js \u4EE3\u7801\uFF1A\u5BF9\u4E0D\u540C\u5E73\u53F0\u7684 Native Modules \u8FDB\u884C\u7EDF\u4E00\u5C01\u88C5\\n\\n\u9700\u8981\u6CE8\u610F\u7684\u662F\uFF0C\u8FD9\u79CD React Native \u7B2C\u4E09\u65B9\u5E93\u4F7F\u7528 npm \u8FDB\u884C\u5206\u53D1\uFF0C\u56E0\u6B64\u4F4D\u4E8E\u5DE5\u7A0B\u7684 `node_modules` \u76EE\u5F55\u4E0B\u3002\\n\\n\u8FD9\u5BF9\u4E8E\u4E60\u60EF\u539F\u751F\u5F00\u53D1\u7684\u540C\u5B66\u6765\u8BF4\u662F\u4E00\u4E2A\u4E0D\u540C\u7684\u5730\u65B9\u3002\\n\\n\u4E0B\u9762\u6211\u4EEC\u4EE5 react-native-intent-launcher \u8FD9\u4E2A\u7B2C\u4E09\u65B9\u5E93\u4E3A\u4F8B\uFF0C\u5B83\u4F4D\u4E8E node_modules/react-native-intent-launcher \u4E0B\u3002\u76EE\u5F55\u7ED3\u6784\u5982\u4E0B\uFF1A\\n\\n```\\nnode_modules/react-native-intent-launcher\\n\u251C\u2500\u2500 IntentConstant.js\\n\u251C\u2500\u2500 LICENSE\\n\u251C\u2500\u2500 README.md\\n\u251C\u2500\u2500 android\\n\u2502   \u251C\u2500\u2500 android.iml\\n\u2502   \u251C\u2500\u2500 build\\n\u2502   \u251C\u2500\u2500 build.gradle\\n\u2502   \u251C\u2500\u2500 gradle\\n\u2502   \u251C\u2500\u2500 gradlew\\n\u2502   \u251C\u2500\u2500 gradlew.bat\\n\u2502   \u251C\u2500\u2500 local.properties\\n\u2502   \u2514\u2500\u2500 src\\n\u251C\u2500\u2500 index.js\\n\u2514\u2500\u2500 package.json\\n```\\n\\n\u4ECE\u4E2D\u53EF\u4EE5\u770B\u51FA\uFF1A\\n\\n- \u5B83\u662F\u4E00\u4E2A\u524D\u7AEF\u5DE5\u7A0B\uFF0C\u6709 `package.json` \u6587\u4EF6\\n- android \u76EE\u5F55\u662F Android \u7684 Native Modules\uFF0C\u5B83\u88AB\u5C01\u88C5\u4E3A\u4E00\u4E2A Android Module \u5DE5\u7A0B\\n- \u56E0\u4E3A\u8FD9\u4E2A\u9879\u76EE\u662F\u5BF9 Android Intent \u7279\u6027\u7684\u5C01\u88C5\uFF0C\u56E0\u6B64\u53EA\u6709 Android \u5E73\u53F0\uFF0C\u6CA1\u6709 iOS \u5E73\u53F0\\n- \u5176\u4E2D android \u76EE\u5F55\u662F\u9700\u8981\u88AB link \u8FDB\u4E3B\u5DE5\u7A0B\u7684 android \u76EE\u5F55\u4E0B\u7684\\n\\n\u6D4F\u89C8\u8FD9\u4E2A\u9879\u76EE\u540E\u53D1\u73B0\uFF1A\\n\\n- package.json\uFF1A\u662F\u4E00\u4E2A\u666E\u901A\u7684\u524D\u7AEF\u5DE5\u7A0B\uFF0C\u6CA1\u6709\u7279\u522B\u7684\u4E0E link \u76F8\u5173\u7684\u4FE1\u606F\uFF0C\u91CC\u9762\u6709\u4E00\u4E2A main \u5B57\u6BB5\uFF0C\u6307\u5411 index.js\\n- index.js\uFF1A\u5B83\u662F\u524D\u9762\u63D0\u5230\u7684 js \u4EE3\u7801\u5165\u53E3\uFF0C\u63D0\u4F9B JS \u4FA7\u7684 Native Module \u63A5\u53E3\\n- android/build.gradle\uFF1A\u4E00\u4E2A\u666E\u901A\u7684 Android Library Modules\uFF0C\u5176\u4E2D\u5BF9 React Native \u7684\u4F9D\u8D56\u6CA1\u6709\u6307\u5B9A\u56FA\u5B9A\u7684\u7248\u672C\u53F7\\n- \u9898\u5916\u8BDD\uFF1A\u4E0D\u592A\u597D\u7684\u4E00\u70B9\u662F\u53D1\u73B0\u5B83\u4F9D\u8D56\u4E86 appcompat-v7:23.0.1\uFF0C\u8FD9\u4E2A\u4F9D\u8D56\u662F\u591A\u4F59\u7684\uFF0C\u6700\u597D\u53BB\u6389\\n\\n\u901A\u8FC7\u5BF9\u8FD9\u4E2A\u5DE5\u7A0B\u7684\u5206\u6790\uFF0C\u6211\u4EEC\u53D1\u73B0\u5B83\u5E76\u6CA1\u6709\u5BF9 link \u8FDB\u884C\u7279\u6B8A\u7684\u914D\u7F6E\u3002\\n\\n\u56E0\u6B64\uFF0C\u89E3\u6790\u5DE5\u7A0B\u3001\u627E\u51FA Native Modules \u7684\u4EFB\u52A1\u90FD\u843D\u5728 link \u547D\u4EE4\u91CC\u9762\u4E86\u3002\\n\\n\u6709\u4E86\u8FD9\u4E9B\u80CC\u666F\u77E5\u8BC6\uFF0C\u4E0B\u9762\u6211\u4EEC\u8FDB\u5165 link \u5185\u90E8\u4E00\u63A2\u7A76\u7ADF\u3002\\n\\n## Android Platform \u5DE5\u5177\u96C6\\n\\n\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u7684\u6838\u5FC3\u95EE\u9898\u662F\u5728 Android \u4E2D\uFF0C\u5F15\u5165 Native \u9700\u8981\u4FEE\u6539 Gradle\u3001Java \u4EE3\u7801\uFF0C\u8FD9\u662F\u5982\u4F55\u5B9E\u73B0\u7684\u5462\uFF1F\\n\\n\u8FD9\u4E2A\u95EE\u9898\u7684\u7B54\u6848\u5C31\u5728 packages/cli/src/commands/link/android \u8FD9\u4E2A\u76EE\u5F55\u4E0B\u3002\\n\\n\u5B83\u63D0\u4F9B\u4E86\u4E00\u7CFB\u5217\u51FD\u6570\uFF0C\u7528\u4E8E\u6CE8\u518C\u539F\u751F\u6A21\u5757\u3001\u89E3\u6CE8\u518C\u539F\u751F\u6A21\u5757\u3001\u62F7\u8D1D\u8D44\u6E90\u7B49\u5F85\u3002\\n\\n\u4E0B\u9762\u6211\u4EEC\u9010\u4E2A\u6765\u770B\uFF1A\\n\\n### \u6CE8\u518C\u539F\u751F\u6A21\u5757\\n\\n\u8FD9\u4E2A\u64CD\u4F5C\u4F4D\u4E8E packages/cli/src/commands/link/android/registerNativeModule.js \u4E2D\uFF1A\u5B83\u7684\u4EE3\u7801\u5982\u4E0B\uFF1A\\n\\n```js\\n/**\\n * Copyright (c) Facebook, Inc. and its affiliates.\\n *\\n * This source code is licensed under the MIT license found in the\\n * LICENSE file in the root directory of this source tree.\\n *\\n * @format\\n */\\n\\nimport applyPatch from './patches/applyPatch';\\nimport makeStringsPatch from './patches/makeStringsPatch';\\nimport makeSettingsPatch from './patches/makeSettingsPatch';\\nimport makeBuildPatch from './patches/makeBuildPatch';\\nimport makeImportPatch from './patches/makeImportPatch';\\nimport makePackagePatch from './patches/makePackagePatch';\\n\\nexport default function registerNativeAndroidModule(\\n  name,\\n  androidConfig,\\n  params,\\n  projectConfig,\\n) {\\n  // \u751F\u6210\u5BFC\u5165 Java \u4F9D\u8D56\u7684 patch\\n  const buildPatch = makeBuildPatch(name);\\n\\n  // applyPatch \u8FDB\u884C\u6B63\u5219\u66FF\u6362\\n  // \u5728 settings.gradle \u4E2D\u901A\u8FC7\u76F8\u5BF9\u8DEF\u5F84\u5BFC\u5165 node_modules \u4E0B\u7684\u5E93\u7684 android \u76EE\u5F55\\n  applyPatch(\\n    projectConfig.settingsGradlePath,\\n    makeSettingsPatch(name, androidConfig, projectConfig),\\n  );\\n\\n  // \u5728 app/build.gradle \u4E0B\u52A0\u5165 Java Module \u4F9D\u8D56\\n  applyPatch(projectConfig.buildGradlePath, buildPatch);\\n  // \u5411 strings.xml \u4E2D\u8FFD\u52A0 string \u8D44\u6E90\\n  applyPatch(projectConfig.stringsPath, makeStringsPatch(params, name));\\n\\n  // \u5411\u6CE8\u518C MainReactPackage \u7684\u5730\u65B9\u63D2\u5165\u7B2C\u4E09\u65B9\u5E93\u7684 Module\\n  applyPatch(\\n    projectConfig.mainFilePath,\\n    makePackagePatch(androidConfig.packageInstance, params, name),\\n  );\\n\\n  // \u5411\u6CE8\u518C MainReactPackage \u7684\u5730\u65B9\u52A0\u4E0A Java \u7C7B\u7684 import\\n  applyPatch(\\n    projectConfig.mainFilePath,\\n    makeImportPatch(androidConfig.packageImportPath),\\n  );\\n}\\n\\n```\\n\\n\u81F3\u6B64\u6211\u4EEC\u53EF\u4EE5\u770B\u51FA\uFF1A\\n\\n- \u6838\u5FC3\u539F\u7406\u662F\u901A\u8FC7\u6B63\u5219\u5339\u914D\u8FDB\u884C\u5185\u5BB9\u66FF\u6362\\n- \u5373\u901A\u8FC7 Patch \u7684\u65B9\u6CD5\uFF0C\u5728 Andorid \u5DE5\u7A0B\u7684\u5404\u5904\u6253\u8865\u4E01\\n\\n### \u611F\u609F\\n\\nlink \u4E2D\u6700\u795E\u79D8\u7684\u90E8\u5206\u88AB\u63ED\u5F00\u4E86\uFF0C\u611F\u89C9\u6CA1\u6709\u60F3\u8C61\u4E2D\u90A3\u4E48\u7F8E\u4E3D\u2026\u2026\u6CA1\u60F3\u5230\u662F\u9760\u66B4\u529B\u6B63\u5219\u66FF\u6362\u6253 patch \u5B9E\u73B0\u7684\uFF0C\u6709\u4E9B\u5931\u671B\u3002\u4F46\u662F\u5B83\u786E\u5B9E\u80FD\u5DE5\u4F5C\uFF0C\u800C\u4E14\u4E5F\u5DE5\u4F5C\u5730\u5F88\u7A33\u5B9A\u3002\\n\\n\u53EF\u80FD\u662F link \u8FD9\u4E2A\u547D\u4EE4\u8FC7\u4E8E\u795E\u5947(\u81EA\u52A8\u63D2\u5165 gradle \u4F9D\u8D56\u3001\u81EA\u52A8\u63D2\u5165 Java \u4EE3\u7801)\uFF0C\u56E0\u6B64\u671F\u671B\u8FC7\u5927\u3002\u4E5F\u786E\u5B9E\uFF0C\u8FD9\u4E48\u4E00\u4E2A\u795E\u5947\u7684\u529F\u80FD\u603B\u4E0D\u80FD\u662F\u901A\u8FC7\u4EBA\u5DE5\u667A\u80FD\u6765\u5B9E\u73B0\u7684\u5427 2333\\n\\n\u8FD9\u4EF6\u4E8B\u60C5\u7ED9\u6211\u7684\u611F\u609F\u662F\uFF1A\\n\\n- \u57FA\u7840\u7684\u6280\u672F\u540C\u6837\u80FD\u505A\u51FA\u5F88\u7F8E\u5999\u7684\u4E8B\u60C5\\n- \u4E00\u4E2A\u53EF\u9760\u8FD0\u884C\u7684\u3001\u5B9E\u73B0\u4E0D\u600E\u4E48\u9AD8\u8D85\u7684\u5389\u5BB3\u529F\u80FD\u8FDC\u80DC\u4E8E\u4E00\u4E2A\u5B9E\u73B0\u9AD8\u8D85\u4F46\u5374\u8DD1\u4E0D\u8D77\u6765\u7684\u529F\u80FD\\n- \u6709\u597D\u70B9\u5B50\u7684\u65F6\u5019\u76F4\u5954\u76EE\u6807\u800C\u53BB\uFF0C\u7528\u76F4\u63A5\u7684\u65B9\u6CD5\u5B9E\u73B0\u5B83\uFF0C\u8FD9\u5C31\u662F\u6700\u597D\u7684\u65B9\u6CD5\\n\\n\u8FD9\u4E0D\u5C31\u662F KISS \u601D\u60F3\u5417\uFF1F\uFF01\u901A\u8FC7\u8FD9\u6B21\u4EE3\u7801\u5206\u6790\u52A0\u6DF1\u4E86\u6211\u7684\u8BA4\u8BC6\u3002\\n\\n### \u8D44\u6E90\u62F7\u8D1D\\n\\n\u8D44\u6E90\u62F7\u8D1D\u5C31\u8981\u7B80\u5355\u591A\u4E86 packages/cli/src/commands/link/android/copyAssets.js\uFF1A\\n\\n```js\\n/**\\n * Copies each file from an array of assets provided to targetPath directory\\n *\\n * For now, the only types of files that are handled are:\\n * - Fonts (otf, ttf) - copied to targetPath/fonts under original name\\n */\\nexport default function copyAssetsAndroid(\\n  files: Array<string>,\\n  project: {assetsPath: string},\\n) {\\n  const assets = groupFilesByType(files);\\n\\n  logger.debug(`Assets path: ${project.assetsPath}`);\\n  (assets.font || []).forEach(asset => {\\n    const fontsDir = path.join(project.assetsPath, 'fonts');\\n    logger.debug(`Copying asset ${asset}`);\\n    // @todo: replace with fs.mkdirSync(path, {recursive}) + fs.copyFileSync\\n    // and get rid of fs-extra once we move to Node 10\\n    fs.copySync(asset, path.join(fontsDir, path.basename(asset)));\\n  });\\n}\\n```\\n\\n\u4ECE\u4E2D\u53EF\u4EE5\u770B\u51FA\uFF0C\u5B83\u73B0\u5728\u53EA\u652F\u6301\u5BF9\u5B57\u4F53\u8D44\u6E90\u7684\u62F7\u8D1D\u3002\\n\\n## link \u547D\u4EE4\\n\\n### \u5165\u53E3\\n\\nlink \u547D\u4EE4\u7684\u5165\u53E3\u5728 packages/cli/src/commands/link/link.js\u3002\\n\\n\u6211\u4EEC\u5148\u6765\u770B\u8FD9\u4E2A\u5165\u53E3\u5BF9\u5916\u5BFC\u51FA\u4E86\u4EC0\u4E48\uFF1A\\n\\n```js\\nexport default {\\n  func: link,\\n  description: 'scope link command to certain platforms (comma-separated)',\\n  name: 'link [packageName]',\\n  options: [\\n    {\\n      command: '--platforms [list]',\\n      description:\\n        'If you want to link dependencies only for specific platforms',\\n      parse: (val: string) => val.toLowerCase().split(','),\\n    },\\n  ],\\n};\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u5305\u542B\u6709\u8FD9\u4E2A\u547D\u4EE4\u7684\u4F7F\u7528\u8BF4\u660E\\n- \u8D1F\u8D23\u5E72\u6D3B\u7684\u51FD\u6570\u662F link\\n\\n\u4E0B\u9762\u6211\u4EEC\u5C31\u6765\u8BE6\u7EC6\u770B link \u51FD\u6570\u3002\\n\\n\\n### link \u51FD\u6570\\n\\nlink \u51FD\u6570\u7684\u7B7E\u540D\u5982\u4E0B\uFF1A\\n\\n```js\\n/**\\n * Updates project and links all dependencies to it.\\n *\\n * @param args If optional argument [packageName] is provided,\\n *             only that package is processed.\\n */\\nfunction link([rawPackageName]: Array<string>, ctx: ContextT, opts: FlagsType) {\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- rawPackageName \u9700\u8981\u8FDE\u63A5\u7684\u6A21\u5757\u540D\u79F0\uFF0C\u53EF\u4EE5\u4E0D\u586B\\n\\n- opts \u914D\u7F6E\u9009\u9879\\n\\n\u5B83\u5C06 link \u64CD\u4F5C\u62C6\u5206\u4E3A\u4EE5\u4E0B\u51E0\u4E2A\u6B65\u9AA4\uFF1A\\n\\n1. \u6A21\u5757\u89E3\u6790\\n2. prelink\\n3. linkDependency\\n4. postlink\\n5. linkAssets\\n\\n\u539F\u6765\u8FD8\u6709\u8D44\u6E90\u6587\u4EF6\u4E5F\u4F1A\u4E00\u540C\u94FE\u63A5\u8FDB\u5165\u4E3B\u5DE5\u7A0B\u3002\\n\\n\u6211\u4EEC\u5728\u524D\u9762\u5DF2\u7ECF\u5206\u6790\u8FC7\u4E86\u6A21\u5757\u89E3\u6790\uFF0C\u4EE5\u53CA Android Platform \u5DE5\u5177\u96C6\u4E2D\u7684\u6838\u5FC3\u64CD\u4F5C\u3002\\n\\nlink \u547D\u4EE4\u5728\u8FD9\u91CC\u53EA\u662F\u8FDB\u884C\u4E86\u76EE\u5F55\u89E3\u6790\uFF0C\u548C\u5C06\u8FD9\u4E9B\u8FC7\u7A0B\u4E32\u8054\u8D77\u6765\uFF0C\u8FD9\u4E9B\u90FD\u662F\u975E\u6838\u5FC3\u7684\u5DE5\u4F5C\uFF0C\u56E0\u6B64\u4E0D\u518D\u8D58\u8FF0\u3002\\n\\n## \u7ED3\u8BBA\\n\\n\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u4EE5 react-native link \u547D\u4EE4\u4E3A\u8D77\u70B9\uFF0C\u901A\u8FC7\u6DF1\u5165\u6316\u6398\uFF0C\u4E86\u89E3\u5230\u539F\u6765 React Native \u4E2D\u8FD8\u6709 React Native Package Manager \u9879\u76EE\uFF0C\u540C\u65F6\u4E5F\u5206\u6790\u4E86 react-native link \u7684\u5B9E\u73B0\u539F\u7406\uFF0C\u6253\u5F00\u4E86\u5B83\u7684\u795E\u79D8\u9762\u7EB1\u3002\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"},\"path\":\"post/ReactNativeCode11md\",\"sharedData\":{},\"siteData\":{\"title\":\"Maxiee Blog\"}}");</script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/styles.8980412b.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/main.ecbb90a8.js"></script></body></html>

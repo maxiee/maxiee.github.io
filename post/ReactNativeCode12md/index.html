@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="React Static"/><title data-react-helmet="true">React Native 代码阅读（十二）：Yoga 底层布局库(Android) | Maxiee Blog</title><meta data-react-helmet="true" charSet="UTF-8"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/styles.8980412b.js"/><link rel="preload" as="script" href="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"/><link rel="preload" as="script" href="https://maxiee.github.io/main.ecbb90a8.js"/><link rel="preload" as="style" href="https://maxiee.github.io/styles.8980412b.css"/><link rel="stylesheet" href="https://maxiee.github.io/styles.8980412b.css"/><script data-react-helmet="true" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no"/></head><body><div id="root"><div style="outline:none" tabindex="-1" role="group"><div><div style="display:flex;flex-direction:row;justify-content:space-between;margin-left:26px;margin-right:26px;height:72px"><div style="display:flex;flex-direction:row;justify-content:center;align-items:center"><img src="data:image/jpeg;base64,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" class="ui mini circular centered image"/><div style="margin-left:12px;font-size:18px"><a href="https://maxiee.github.io/">Maxiee Blog</a></div></div><div style="display:flex;flex-direction:row;align-items:center"><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/post">博客</a></div><div style="margin-left:26px" role="listbox" aria-expanded="false" class="ui dropdown" tabindex="0"><div class="text" role="alert" aria-live="polite">作品</div><i aria-hidden="true" class="dropdown icon"></i><div class="menu transition"><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/RayInfomd">RayInfo</a><div style="color:#CCCCCC">资讯阅读 App</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/MaxieeRNLabmd">MaxieeRNLab</a><div style="color:#CCCCCC">React Native 综合示例 APP</div></div></div><div role="option" class="item"><div style="margin:10px" class="text"><a href="https://maxiee.github.io/post/JiuShengmd">韭生</a><div style="color:#CCCCCC">roguelike 人生模拟器游戏</div></div></div></div></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/gallery">设计</a></div><div style="color:#666666;margin-left:26px"><a href="https://maxiee.github.io/about">关于</a></div></div></div><div style="outline:none" tabindex="-1" role="group"><div class="ui grid"><div class="row"><div style="margin-left:20px;margin-right:20px" class="column"><h1 class="ui header">React Native 代码阅读（十二）：Yoga 底层布局库(Android)</h1><p style="margin-bottom:20px;color:gray">2019-03-26</p><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div><div><h2>前言</h2>
+<p>React Native 并没有使用 Android 原生的布局引擎，而是使用了 Facebook 的 <a href="https://github.com/facebook/yoga">Yoga</a> 布局引擎。Yoga 引擎是跨平台的，它实现了 Flexbox 布局模式。在本文中，我们就来看看如何使用 React Native 的底层布局引擎 Yoga。</p>
+<p>关于本文的实例代码请参见 <a href="https://github.com/maxiee/MaxieeRNLab">MaxieeRNLab</a> 的 <a href="https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity1.java">YogaActivity</a>。如果你觉得这个项目有所帮助，欢迎 Star！</p>
+<h2>Yoga 布局与 Android 原生布局的不同</h2>
+<p>在最初解除 Yoga 的时候，完全搞不懂它是怎么来进行布局的。原因是我对 Android 布局的概念先入为主了。</p>
+<p>首先需要知道的是，Yoga 是一套完全独立的布局引擎，这也就是说它没有用到 Android 的布局逻辑。</p>
+<p>为了完成这个思维转变，让我们先想想 Android 原生是如何布局的？</p>
+<p>我们可能会写如下的布局：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">&lt;LinearLayout
+    android:orientation=&quot;vertical&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;&gt;
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello World!&quot;/&gt;
+&lt;/LinearLayout&gt;
+</code></pre></pre>
+<p>在写下这段布局的时候，我们就已经在使用 Android 原生的布局逻辑了：</p>
+<ul>
+<li>首先我们创建了一个 LinearLayout，它是一个线性容器布局，我们指定它的大小策略为横向充满，纵向包裹内容，沿竖向进行排列</li>
+<li>在 LinearLayout 包含有一个横纵都包裹内容的 TextView</li>
+<li>这个布局在运行时，Android 原生的布局引擎会遍历布局，根据控件的大小策略来进行 onMeasure、onLayout 操作</li>
+<li>这个过程是 Android 开发的基本功，也是面试的常考内容</li>
+</ul>
+<p>但是在本文中，我们要使用 Yoga 引擎来替换 Android 原生的布局引擎，因此上面的这些知识全部<strong>不会</strong>用到！我们需要将认知清空。</p>
+<h2>用 Yoga 进行布局</h2>
+<p>清空到什么程度呢？现在屏幕上只有一个坐标系。假设我们创建一个 TextView，如何将它摆到指定位置呢？通过向它指定 x、y 坐标。</p>
+<p>Yoga 布局引擎实际上是一个数值计算引擎，它实际上是与 UI 视图无关的。</p>
+<p>在 Yoga 中，布局的每个元素都是一个节点(YogaNode)，这个 YogaNode 会代表界面上的某个元素（比如一个 TextView），但是两者没有直接关联。</p>
+<p>比如假设我们要在屏幕上横向展示三个方块，对应的<a href="https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity2.java">代码</a>如下(Activity 的 onCreate 方法）:</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">FrameLayout container = new FrameLayout(this);
+
+/**
+ * 布局纯数值计算
+ */
+float screenWidth = getWindowManager().getDefaultDisplay().getWidth();
+float screenHeight = getWindowManager().getDefaultDisplay().getHeight();
+
+YogaNode root = new YogaNode();
+root.setWidth(screenWidth);
+root.setHeight(screenHeight);
+root.setFlexDirection(YogaFlexDirection.ROW);
+
+YogaNode rect1 = new YogaNode();
+rect1.setHeight(VIEW_WIDTH);
+rect1.setWidth(VIEW_WIDTH);
+rect1.setMargin(YogaEdge.ALL, 20);
+
+YogaNode rect2 = new YogaNode();
+rect2.setHeight(VIEW_WIDTH);
+rect2.setWidth(VIEW_WIDTH);
+rect2.setMargin(YogaEdge.ALL, 20);
+
+YogaNode rect3 = new YogaNode();
+rect3.setHeight(VIEW_WIDTH);
+rect3.setWidth(VIEW_WIDTH);
+rect3.setMargin(YogaEdge.ALL, 20);
+
+root.addChildAt(rect1, 0);
+root.addChildAt(rect2, 1);
+root.addChildAt(rect3, 2);
+
+// 给定屏幕长宽，求解屏幕元素位置
+root.calculateLayout(screenWidth, screenHeight);
+
+/**
+ * Android 视图创建于定位
+ */
+ViewGroup.LayoutParams lp = new FrameLayout.LayoutParams(VIEW_WIDTH, VIEW_WIDTH);
+
+View v1 = new View(this);
+v1.setLayoutParams(lp);
+v1.setBackgroundColor(Color.parseColor(&quot;#d50000&quot;));
+
+View v2 = new View(this);
+v2.setLayoutParams(lp);
+v2.setBackgroundColor(Color.parseColor(&quot;#ff1744&quot;));
+
+View v3 = new View(this);
+v3.setLayoutParams(lp);
+v3.setBackgroundColor(Color.parseColor(&quot;#ff5252&quot;));
+
+container.addView(v1);
+container.addView(v2);
+container.addView(v3);
+
+v1.setX(rect1.getLayoutX());
+v1.setY(rect1.getLayoutY());
+v2.setX(rect2.getLayoutX());
+v2.setY(rect2.getLayoutY());
+v3.setX(rect3.getLayoutX());
+v3.setY(rect3.getLayoutY());
+
+setContentView(container);
+</code></pre></pre>
+<p>其中：</p>
+<ul>
+<li>整个过程分为两个部分：Yoga 引擎布局纯数值计算、Android 视图创建于定位</li>
+<li>其中 YogaNode 完全是脱离 Android View 体系的，两者只要保持概念上的一致(一个控件的 Flexbox 定义好、YogaNode 设置多么大，视图控件也要设置多么大，两者保持一致)</li>
+<li>学习了 React Native 底层的 Yoga 布局引擎之后，我们再回头看 RN 的 Shadow Node 这个概念，就会有更好的理解了</li>
+</ul>
+<p>这段代码执行（clone <a href="https://github.com/maxiee/MaxieeRNLab">MaxieeRNLab</a> 后编译参见效果）的效果如下：</p>
+<p><img style="max-width:60%" src="https://maxiee.github.io/images/ReactNativeCode1201.png" class="ui centered image"/></p>
+<h2>更复杂一点的例子</h2>
+<p>有了上一节的基础后，下面让我们来看一个更复杂一些的例子(<a href="https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity1.java">完整代码</a>)：</p>
+<pre><pre style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687;padding:1em;margin:.5em 0;overflow:auto"><code style="font-family:Consolas, Menlo, Monaco, &quot;Andale Mono WT&quot;, &quot;Andale Mono&quot;, &quot;Lucida Console&quot;, &quot;Lucida Sans Typewriter&quot;, &quot;DejaVu Sans Mono&quot;, &quot;Bitstream Vera Sans Mono&quot;, &quot;Liberation Mono&quot;, &quot;Nimbus Mono L&quot;, &quot;Courier New&quot;, Courier, monospace;font-size:14px;line-height:1.375;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;background:#f5f7ff;color:#5e6687">package com.maxieernlab.yoga;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import com.facebook.yoga.YogaEdge;
+import com.facebook.yoga.YogaFlexDirection;
+import com.facebook.yoga.YogaNode;
+
+import java.util.ArrayList;
+
+public class YogaActivity1 extends AppCompatActivity {
+    private static final int VIEW_WIDTH = 200;
+
+    private float screenHeight;
+    private float screenWidth;
+
+    private ArrayList&lt;View&gt; poolView = new ArrayList&lt;&gt;();
+    private ArrayList&lt;YogaNode&gt; poolNode = new ArrayList&lt;&gt;();
+
+    private String[][] colors = new String[][] {
+            new String[] { &quot;#d50000&quot;, &quot;#ff1744&quot;, &quot;#ff5252&quot;, &quot;#ff8a80&quot; },
+            new String[] { &quot;#c51162&quot;, &quot;#f50057&quot;, &quot;#ff4081&quot;, &quot;#ff80ab&quot; },
+            new String[] { &quot;#aa00ff&quot;, &quot;#d500f9&quot;, &quot;#e040fb&quot;, &quot;#ea80fc&quot; },
+            new String[] { &quot;#6200ea&quot;, &quot;#651fff&quot;, &quot;#7c4dff&quot;, &quot;#b388ff&quot; }
+    };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        FrameLayout container = new FrameLayout(this);
+
+        screenWidth = getWindowManager().getDefaultDisplay().getWidth();
+        screenHeight = getWindowManager().getDefaultDisplay().getHeight();
+        log(&quot;Screen size = (%f, %f)&quot;, screenWidth, screenHeight);
+
+        YogaNode root = new YogaNode();
+        root.setWidth(screenWidth);
+        root.setHeight(screenHeight);
+        root.setFlexDirection(YogaFlexDirection.COLUMN);
+
+        log(&quot;start&quot;);
+        createRow1(root, 0);
+        createRow1(root, 1);
+        createRow1(root, 2);
+        createRow1(root, 3);
+
+        root.calculateLayout(screenWidth, screenHeight);
+
+        for (int i = 0; i &lt; poolView.size(); i++) {
+            View v = poolView.get(i);
+            YogaNode n = poolNode.get(i);
+            YogaNode r = n.getOwner();
+            v.setX(r.getLayoutX() + n.getLayoutX());
+            v.setY(r.getLayoutY() + n.getLayoutY());
+            log(&quot;v%d position=(%f, %f)&quot;,
+                    i,
+                    r.getLayoutX() + n.getLayoutX(),
+                    r.getLayoutY() + n.getLayoutY());
+            container.addView(v);
+        }
+
+        log(&quot;end&quot;);
+
+        setContentView(container);
+    }
+
+    private void createRow1(YogaNode root, int index) {
+        log(&quot;create index = &quot; + index);
+        YogaNode row = new YogaNode();
+        row.setHeight(VIEW_WIDTH);
+        row.setWidth(VIEW_WIDTH * 4);
+        row.setFlexDirection(YogaFlexDirection.ROW);
+        row.setMargin(YogaEdge.ALL, 20);
+
+        for (int i = 0; i &lt; 4; i++) {
+            YogaNode n = new YogaNode();
+            n.setWidth(VIEW_WIDTH);
+            n.setHeight(VIEW_WIDTH);
+            View v = createView(colors[index][i]);
+            row.addChildAt(n, i);
+            poolNode.add(n);
+            poolView.add(v);
+        }
+
+        root.addChildAt(row, index);
+    }
+
+    private View createView(String color) {
+        View v = new View(this);
+        v.setBackgroundColor(Color.parseColor(color));
+        ViewGroup.LayoutParams lp = new FrameLayout.LayoutParams(VIEW_WIDTH, VIEW_WIDTH);
+        v.setLayoutParams(lp);
+        return v;
+    }
+
+    private void log(String template, Object... objects) {
+        Log.d(&quot;max-yoga&quot;, String.format(template, objects));
+    }
+}
+</code></pre></pre>
+<p>效果图如下：</p>
+<p><img style="max-width:60%" src="https://maxiee.github.io/images/ReactNativeCode1202.png" class="ui centered image"/></p>
+<p>其中：</p>
+<ul>
+<li>需要注意的一点是，对于嵌套的 Node，它的 getLayoutX 和 getLayoutY 是相对于上级 Node 而言的</li>
+<li>因此如果要得到 Node 在屏幕上的绝对坐标，需要累加它所有父级的坐标</li>
+</ul>
+<h2>小结</h2>
+<p>至此我们就完成了对 React Native 底层布局引擎 Yoga 的学习。</p>
+<p>有了这一基础，下一节我们就可以向 React Native 的 UI 部分发起进攻了！😆</p></div><div class="ui leaderboard ad"><ins class=" adsbygoogle" style="display:block" data-ad-client="ca-pub-8746515866560942" data-ad-slot="3546488844" data-ad-layout="" data-ad-format="auto" data-full-width-responsive="true"></ins></div></div></div></div></div></div></div></div><script type="text/javascript">
+    window.__routeInfo = JSON.parse("{\"template\":\"/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post\",\"sharedHashesByProp\":{},\"data\":{\"post\":{\"name\":\"React Native \u4EE3\u7801\u9605\u8BFB\uFF08\u5341\u4E8C\uFF09\uFF1AYoga \u5E95\u5C42\u5E03\u5C40\u5E93(Android)\",\"desc\":\"React Native \u5E76\u6CA1\u6709\u4F7F\u7528 Android \u539F\u751F\u7684\u5E03\u5C40\u5F15\u64CE\uFF0C\u800C\u662F\u4F7F\u7528\u4E86 Facebook \u7684 Yoga \u5E03\u5C40\u5F15\u64CE\u3002Yoga \u5F15\u64CE\u662F\u8DE8\u5E73\u53F0\u7684\uFF0C\u5B83\u5B9E\u73B0\u4E86 Flexbox \u5E03\u5C40\u6A21\u5F0F\u3002\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u5C31\u6765\u770B\u770B\u5982\u4F55\u4F7F\u7528 React Native \u7684\u5E95\u5C42\u5E03\u5C40\u5F15\u64CE Yoga\u3002\",\"type\":\"md\",\"link\":\"ReactNativeCode12md\",\"create\":\"2019-03-26\",\"filename\":\"ReactNativeCode12.md\"},\"content\":\"## \u524D\u8A00\\n\\nReact Native \u5E76\u6CA1\u6709\u4F7F\u7528 Android \u539F\u751F\u7684\u5E03\u5C40\u5F15\u64CE\uFF0C\u800C\u662F\u4F7F\u7528\u4E86 Facebook \u7684 [Yoga](https://github.com/facebook/yoga) \u5E03\u5C40\u5F15\u64CE\u3002Yoga \u5F15\u64CE\u662F\u8DE8\u5E73\u53F0\u7684\uFF0C\u5B83\u5B9E\u73B0\u4E86 Flexbox \u5E03\u5C40\u6A21\u5F0F\u3002\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u5C31\u6765\u770B\u770B\u5982\u4F55\u4F7F\u7528 React Native \u7684\u5E95\u5C42\u5E03\u5C40\u5F15\u64CE Yoga\u3002\\n\\n\u5173\u4E8E\u672C\u6587\u7684\u5B9E\u4F8B\u4EE3\u7801\u8BF7\u53C2\u89C1 [MaxieeRNLab](https://github.com/maxiee/MaxieeRNLab) \u7684 [YogaActivity](https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity1.java)\u3002\u5982\u679C\u4F60\u89C9\u5F97\u8FD9\u4E2A\u9879\u76EE\u6709\u6240\u5E2E\u52A9\uFF0C\u6B22\u8FCE Star\uFF01\\n\\n## Yoga \u5E03\u5C40\u4E0E Android \u539F\u751F\u5E03\u5C40\u7684\u4E0D\u540C\\n\\n\u5728\u6700\u521D\u89E3\u9664 Yoga \u7684\u65F6\u5019\uFF0C\u5B8C\u5168\u641E\u4E0D\u61C2\u5B83\u662F\u600E\u4E48\u6765\u8FDB\u884C\u5E03\u5C40\u7684\u3002\u539F\u56E0\u662F\u6211\u5BF9 Android \u5E03\u5C40\u7684\u6982\u5FF5\u5148\u5165\u4E3A\u4E3B\u4E86\u3002\\n\\n\u9996\u5148\u9700\u8981\u77E5\u9053\u7684\u662F\uFF0CYoga \u662F\u4E00\u5957\u5B8C\u5168\u72EC\u7ACB\u7684\u5E03\u5C40\u5F15\u64CE\uFF0C\u8FD9\u4E5F\u5C31\u662F\u8BF4\u5B83\u6CA1\u6709\u7528\u5230 Android \u7684\u5E03\u5C40\u903B\u8F91\u3002\\n\\n\u4E3A\u4E86\u5B8C\u6210\u8FD9\u4E2A\u601D\u7EF4\u8F6C\u53D8\uFF0C\u8BA9\u6211\u4EEC\u5148\u60F3\u60F3 Android \u539F\u751F\u662F\u5982\u4F55\u5E03\u5C40\u7684\uFF1F\\n\\n\u6211\u4EEC\u53EF\u80FD\u4F1A\u5199\u5982\u4E0B\u7684\u5E03\u5C40\uFF1A\\n\\n```xml\\n<LinearLayout\\n    android:orientation=\\\"vertical\\\"\\n    android:layout_width=\\\"match_parent\\\"\\n    android:layout_height=\\\"wrap_content\\\">\\n    <TextView\\n        android:layout_width=\\\"wrap_content\\\"\\n        android:layout_height=\\\"wrap_content\\\"\\n        android:text=\\\"Hello World!\\\"/>\\n</LinearLayout>\\n```\\n\\n\u5728\u5199\u4E0B\u8FD9\u6BB5\u5E03\u5C40\u7684\u65F6\u5019\uFF0C\u6211\u4EEC\u5C31\u5DF2\u7ECF\u5728\u4F7F\u7528 Android \u539F\u751F\u7684\u5E03\u5C40\u903B\u8F91\u4E86\uFF1A\\n\\n- \u9996\u5148\u6211\u4EEC\u521B\u5EFA\u4E86\u4E00\u4E2A LinearLayout\uFF0C\u5B83\u662F\u4E00\u4E2A\u7EBF\u6027\u5BB9\u5668\u5E03\u5C40\uFF0C\u6211\u4EEC\u6307\u5B9A\u5B83\u7684\u5927\u5C0F\u7B56\u7565\u4E3A\u6A2A\u5411\u5145\u6EE1\uFF0C\u7EB5\u5411\u5305\u88F9\u5185\u5BB9\uFF0C\u6CBF\u7AD6\u5411\u8FDB\u884C\u6392\u5217\\n- \u5728 LinearLayout \u5305\u542B\u6709\u4E00\u4E2A\u6A2A\u7EB5\u90FD\u5305\u88F9\u5185\u5BB9\u7684 TextView\\n- \u8FD9\u4E2A\u5E03\u5C40\u5728\u8FD0\u884C\u65F6\uFF0CAndroid \u539F\u751F\u7684\u5E03\u5C40\u5F15\u64CE\u4F1A\u904D\u5386\u5E03\u5C40\uFF0C\u6839\u636E\u63A7\u4EF6\u7684\u5927\u5C0F\u7B56\u7565\u6765\u8FDB\u884C onMeasure\u3001onLayout \u64CD\u4F5C\\n- \u8FD9\u4E2A\u8FC7\u7A0B\u662F Android \u5F00\u53D1\u7684\u57FA\u672C\u529F\uFF0C\u4E5F\u662F\u9762\u8BD5\u7684\u5E38\u8003\u5185\u5BB9\\n\\n\u4F46\u662F\u5728\u672C\u6587\u4E2D\uFF0C\u6211\u4EEC\u8981\u4F7F\u7528 Yoga \u5F15\u64CE\u6765\u66FF\u6362 Android \u539F\u751F\u7684\u5E03\u5C40\u5F15\u64CE\uFF0C\u56E0\u6B64\u4E0A\u9762\u7684\u8FD9\u4E9B\u77E5\u8BC6\u5168\u90E8**\u4E0D\u4F1A**\u7528\u5230\uFF01\u6211\u4EEC\u9700\u8981\u5C06\u8BA4\u77E5\u6E05\u7A7A\u3002\\n\\n## \u7528 Yoga \u8FDB\u884C\u5E03\u5C40\\n\\n\u6E05\u7A7A\u5230\u4EC0\u4E48\u7A0B\u5EA6\u5462\uFF1F\u73B0\u5728\u5C4F\u5E55\u4E0A\u53EA\u6709\u4E00\u4E2A\u5750\u6807\u7CFB\u3002\u5047\u8BBE\u6211\u4EEC\u521B\u5EFA\u4E00\u4E2A TextView\uFF0C\u5982\u4F55\u5C06\u5B83\u6446\u5230\u6307\u5B9A\u4F4D\u7F6E\u5462\uFF1F\u901A\u8FC7\u5411\u5B83\u6307\u5B9A x\u3001y \u5750\u6807\u3002\\n\\nYoga \u5E03\u5C40\u5F15\u64CE\u5B9E\u9645\u4E0A\u662F\u4E00\u4E2A\u6570\u503C\u8BA1\u7B97\u5F15\u64CE\uFF0C\u5B83\u5B9E\u9645\u4E0A\u662F\u4E0E UI \u89C6\u56FE\u65E0\u5173\u7684\u3002\\n\\n\u5728 Yoga \u4E2D\uFF0C\u5E03\u5C40\u7684\u6BCF\u4E2A\u5143\u7D20\u90FD\u662F\u4E00\u4E2A\u8282\u70B9(YogaNode)\uFF0C\u8FD9\u4E2A YogaNode \u4F1A\u4EE3\u8868\u754C\u9762\u4E0A\u7684\u67D0\u4E2A\u5143\u7D20\uFF08\u6BD4\u5982\u4E00\u4E2A TextView\uFF09\uFF0C\u4F46\u662F\u4E24\u8005\u6CA1\u6709\u76F4\u63A5\u5173\u8054\u3002\\n\\n\u6BD4\u5982\u5047\u8BBE\u6211\u4EEC\u8981\u5728\u5C4F\u5E55\u4E0A\u6A2A\u5411\u5C55\u793A\u4E09\u4E2A\u65B9\u5757\uFF0C\u5BF9\u5E94\u7684[\u4EE3\u7801](https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity2.java)\u5982\u4E0B(Activity \u7684 onCreate \u65B9\u6CD5\uFF09:\\n\\n```java\\nFrameLayout container = new FrameLayout(this);\\n\\n/**\\n * \u5E03\u5C40\u7EAF\u6570\u503C\u8BA1\u7B97\\n */\\nfloat screenWidth = getWindowManager().getDefaultDisplay().getWidth();\\nfloat screenHeight = getWindowManager().getDefaultDisplay().getHeight();\\n\\nYogaNode root = new YogaNode();\\nroot.setWidth(screenWidth);\\nroot.setHeight(screenHeight);\\nroot.setFlexDirection(YogaFlexDirection.ROW);\\n\\nYogaNode rect1 = new YogaNode();\\nrect1.setHeight(VIEW_WIDTH);\\nrect1.setWidth(VIEW_WIDTH);\\nrect1.setMargin(YogaEdge.ALL, 20);\\n\\nYogaNode rect2 = new YogaNode();\\nrect2.setHeight(VIEW_WIDTH);\\nrect2.setWidth(VIEW_WIDTH);\\nrect2.setMargin(YogaEdge.ALL, 20);\\n\\nYogaNode rect3 = new YogaNode();\\nrect3.setHeight(VIEW_WIDTH);\\nrect3.setWidth(VIEW_WIDTH);\\nrect3.setMargin(YogaEdge.ALL, 20);\\n\\nroot.addChildAt(rect1, 0);\\nroot.addChildAt(rect2, 1);\\nroot.addChildAt(rect3, 2);\\n\\n// \u7ED9\u5B9A\u5C4F\u5E55\u957F\u5BBD\uFF0C\u6C42\u89E3\u5C4F\u5E55\u5143\u7D20\u4F4D\u7F6E\\nroot.calculateLayout(screenWidth, screenHeight);\\n\\n/**\\n * Android \u89C6\u56FE\u521B\u5EFA\u4E8E\u5B9A\u4F4D\\n */\\nViewGroup.LayoutParams lp = new FrameLayout.LayoutParams(VIEW_WIDTH, VIEW_WIDTH);\\n\\nView v1 = new View(this);\\nv1.setLayoutParams(lp);\\nv1.setBackgroundColor(Color.parseColor(\\\"#d50000\\\"));\\n\\nView v2 = new View(this);\\nv2.setLayoutParams(lp);\\nv2.setBackgroundColor(Color.parseColor(\\\"#ff1744\\\"));\\n\\nView v3 = new View(this);\\nv3.setLayoutParams(lp);\\nv3.setBackgroundColor(Color.parseColor(\\\"#ff5252\\\"));\\n\\ncontainer.addView(v1);\\ncontainer.addView(v2);\\ncontainer.addView(v3);\\n\\nv1.setX(rect1.getLayoutX());\\nv1.setY(rect1.getLayoutY());\\nv2.setX(rect2.getLayoutX());\\nv2.setY(rect2.getLayoutY());\\nv3.setX(rect3.getLayoutX());\\nv3.setY(rect3.getLayoutY());\\n\\nsetContentView(container);\\n```\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u6574\u4E2A\u8FC7\u7A0B\u5206\u4E3A\u4E24\u4E2A\u90E8\u5206\uFF1AYoga \u5F15\u64CE\u5E03\u5C40\u7EAF\u6570\u503C\u8BA1\u7B97\u3001Android \u89C6\u56FE\u521B\u5EFA\u4E8E\u5B9A\u4F4D\\n- \u5176\u4E2D YogaNode \u5B8C\u5168\u662F\u8131\u79BB Android View \u4F53\u7CFB\u7684\uFF0C\u4E24\u8005\u53EA\u8981\u4FDD\u6301\u6982\u5FF5\u4E0A\u7684\u4E00\u81F4(\u4E00\u4E2A\u63A7\u4EF6\u7684 Flexbox \u5B9A\u4E49\u597D\u3001YogaNode \u8BBE\u7F6E\u591A\u4E48\u5927\uFF0C\u89C6\u56FE\u63A7\u4EF6\u4E5F\u8981\u8BBE\u7F6E\u591A\u4E48\u5927\uFF0C\u4E24\u8005\u4FDD\u6301\u4E00\u81F4)\\n- \u5B66\u4E60\u4E86 React Native \u5E95\u5C42\u7684 Yoga \u5E03\u5C40\u5F15\u64CE\u4E4B\u540E\uFF0C\u6211\u4EEC\u518D\u56DE\u5934\u770B RN \u7684 Shadow Node \u8FD9\u4E2A\u6982\u5FF5\uFF0C\u5C31\u4F1A\u6709\u66F4\u597D\u7684\u7406\u89E3\u4E86\\n\\n\u8FD9\u6BB5\u4EE3\u7801\u6267\u884C\uFF08clone [MaxieeRNLab](https://github.com/maxiee/MaxieeRNLab) \u540E\u7F16\u8BD1\u53C2\u89C1\u6548\u679C\uFF09\u7684\u6548\u679C\u5982\u4E0B\uFF1A\\n\\n![](image/ReactNativeCode1201.png)\\n\\n## \u66F4\u590D\u6742\u4E00\u70B9\u7684\u4F8B\u5B50\\n\\n\u6709\u4E86\u4E0A\u4E00\u8282\u7684\u57FA\u7840\u540E\uFF0C\u4E0B\u9762\u8BA9\u6211\u4EEC\u6765\u770B\u4E00\u4E2A\u66F4\u590D\u6742\u4E00\u4E9B\u7684\u4F8B\u5B50([\u5B8C\u6574\u4EE3\u7801](https://github.com/maxiee/MaxieeRNLab/blob/master/android/app/src/main/java/com/maxieernlab/yoga/YogaActivity1.java))\uFF1A\\n\\n```java\\npackage com.maxieernlab.yoga;\\n\\nimport android.graphics.Color;\\nimport android.os.Bundle;\\nimport android.support.annotation.Nullable;\\nimport android.support.v7.app.AppCompatActivity;\\nimport android.util.Log;\\nimport android.view.View;\\nimport android.view.ViewGroup;\\nimport android.widget.FrameLayout;\\n\\nimport com.facebook.yoga.YogaEdge;\\nimport com.facebook.yoga.YogaFlexDirection;\\nimport com.facebook.yoga.YogaNode;\\n\\nimport java.util.ArrayList;\\n\\npublic class YogaActivity1 extends AppCompatActivity {\\n    private static final int VIEW_WIDTH = 200;\\n\\n    private float screenHeight;\\n    private float screenWidth;\\n\\n    private ArrayList<View> poolView = new ArrayList<>();\\n    private ArrayList<YogaNode> poolNode = new ArrayList<>();\\n\\n    private String[][] colors = new String[][] {\\n            new String[] { \\\"#d50000\\\", \\\"#ff1744\\\", \\\"#ff5252\\\", \\\"#ff8a80\\\" },\\n            new String[] { \\\"#c51162\\\", \\\"#f50057\\\", \\\"#ff4081\\\", \\\"#ff80ab\\\" },\\n            new String[] { \\\"#aa00ff\\\", \\\"#d500f9\\\", \\\"#e040fb\\\", \\\"#ea80fc\\\" },\\n            new String[] { \\\"#6200ea\\\", \\\"#651fff\\\", \\\"#7c4dff\\\", \\\"#b388ff\\\" }\\n    };\\n\\n    @Override\\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\\n        super.onCreate(savedInstanceState);\\n\\n        FrameLayout container = new FrameLayout(this);\\n\\n        screenWidth = getWindowManager().getDefaultDisplay().getWidth();\\n        screenHeight = getWindowManager().getDefaultDisplay().getHeight();\\n        log(\\\"Screen size = (%f, %f)\\\", screenWidth, screenHeight);\\n\\n        YogaNode root = new YogaNode();\\n        root.setWidth(screenWidth);\\n        root.setHeight(screenHeight);\\n        root.setFlexDirection(YogaFlexDirection.COLUMN);\\n\\n        log(\\\"start\\\");\\n        createRow1(root, 0);\\n        createRow1(root, 1);\\n        createRow1(root, 2);\\n        createRow1(root, 3);\\n\\n        root.calculateLayout(screenWidth, screenHeight);\\n\\n        for (int i = 0; i < poolView.size(); i++) {\\n            View v = poolView.get(i);\\n            YogaNode n = poolNode.get(i);\\n            YogaNode r = n.getOwner();\\n            v.setX(r.getLayoutX() + n.getLayoutX());\\n            v.setY(r.getLayoutY() + n.getLayoutY());\\n            log(\\\"v%d position=(%f, %f)\\\",\\n                    i,\\n                    r.getLayoutX() + n.getLayoutX(),\\n                    r.getLayoutY() + n.getLayoutY());\\n            container.addView(v);\\n        }\\n\\n        log(\\\"end\\\");\\n\\n        setContentView(container);\\n    }\\n\\n    private void createRow1(YogaNode root, int index) {\\n        log(\\\"create index = \\\" + index);\\n        YogaNode row = new YogaNode();\\n        row.setHeight(VIEW_WIDTH);\\n        row.setWidth(VIEW_WIDTH * 4);\\n        row.setFlexDirection(YogaFlexDirection.ROW);\\n        row.setMargin(YogaEdge.ALL, 20);\\n\\n        for (int i = 0; i < 4; i++) {\\n            YogaNode n = new YogaNode();\\n            n.setWidth(VIEW_WIDTH);\\n            n.setHeight(VIEW_WIDTH);\\n            View v = createView(colors[index][i]);\\n            row.addChildAt(n, i);\\n            poolNode.add(n);\\n            poolView.add(v);\\n        }\\n\\n        root.addChildAt(row, index);\\n    }\\n\\n    private View createView(String color) {\\n        View v = new View(this);\\n        v.setBackgroundColor(Color.parseColor(color));\\n        ViewGroup.LayoutParams lp = new FrameLayout.LayoutParams(VIEW_WIDTH, VIEW_WIDTH);\\n        v.setLayoutParams(lp);\\n        return v;\\n    }\\n\\n    private void log(String template, Object... objects) {\\n        Log.d(\\\"max-yoga\\\", String.format(template, objects));\\n    }\\n}\\n```\\n\\n\u6548\u679C\u56FE\u5982\u4E0B\uFF1A\\n\\n![](image/ReactNativeCode1202.png)\\n\\n\u5176\u4E2D\uFF1A\\n\\n- \u9700\u8981\u6CE8\u610F\u7684\u4E00\u70B9\u662F\uFF0C\u5BF9\u4E8E\u5D4C\u5957\u7684 Node\uFF0C\u5B83\u7684 getLayoutX \u548C getLayoutY \u662F\u76F8\u5BF9\u4E8E\u4E0A\u7EA7 Node \u800C\u8A00\u7684\\n- \u56E0\u6B64\u5982\u679C\u8981\u5F97\u5230 Node \u5728\u5C4F\u5E55\u4E0A\u7684\u7EDD\u5BF9\u5750\u6807\uFF0C\u9700\u8981\u7D2F\u52A0\u5B83\u6240\u6709\u7236\u7EA7\u7684\u5750\u6807\\n\\n## \u5C0F\u7ED3\\n\\n\u81F3\u6B64\u6211\u4EEC\u5C31\u5B8C\u6210\u4E86\u5BF9 React Native \u5E95\u5C42\u5E03\u5C40\u5F15\u64CE Yoga \u7684\u5B66\u4E60\u3002\\n\\n\u6709\u4E86\u8FD9\u4E00\u57FA\u7840\uFF0C\u4E0B\u4E00\u8282\u6211\u4EEC\u5C31\u53EF\u4EE5\u5411 React Native \u7684 UI \u90E8\u5206\u53D1\u8D77\u8FDB\u653B\u4E86\uFF01\uD83D\uDE06\"},\"path\":\"post/ReactNativeCode12md\",\"sharedData\":{},\"siteData\":{\"title\":\"Maxiee Blog\"}}");</script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/about~home/maxiee/Code/Blog/maxiee.github.i~532aefe3.2076e844.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/bookmarks~home/maxiee/Code/Blog/maxiee.gith~ecc889a8.b47d8021.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/index~home/maxiee/Code/Blog/maxiee.github.i~d0281e17.839d11cd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.406506fd.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/home/maxiee/Code/Blog/maxiee.github.io/src/pages/post.5747224c.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/styles.8980412b.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/templates/vendors~main.e28cc00a.js"></script><script defer="" type="text/javascript" src="https://maxiee.github.io/main.ecbb90a8.js"></script></body></html>
